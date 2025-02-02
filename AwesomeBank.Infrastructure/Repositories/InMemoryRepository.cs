@@ -1,4 +1,6 @@
-﻿namespace AwesomeBank.Infrastructure.Repositories;
+﻿using System.Collections.Generic;
+
+namespace AwesomeBank.Infrastructure.Repositories;
 
 public class InMemoryRepository<T> : IRepository<T> where T : class
 {
@@ -43,6 +45,7 @@ public class InMemoryRepository<T> : IRepository<T> where T : class
         _store[key] = entity;
     }
 
+
     public void Update(T entity)
     {
         var key = _keySelector(entity);
@@ -54,6 +57,21 @@ public class InMemoryRepository<T> : IRepository<T> where T : class
         else
         {
             throw new InvalidOperationException("Entity not found.");
+        }
+    }
+
+    public void Remove(T entity)
+    {
+        var key = _keySelector(entity);
+        if (string.IsNullOrEmpty(key)) throw new ArgumentException("Invalid entity key.");
+
+        if (_store.ContainsKey(key))
+        {
+            _store.TryRemove(key, out _);
+        }
+        else
+        {
+            throw new KeyNotFoundException("Entity not found.");
         }
     }
 }

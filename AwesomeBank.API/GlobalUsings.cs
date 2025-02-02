@@ -2,8 +2,10 @@
 global using AwesomeBank.API.Extentions;
 global using AwesomeBank.Domain.Entities;
 
-global using AwesomeBank.API.Models.ViewModels;
-global using AwesomeBank.API.Mappings;
+global using AwesomeBank.API.Application.Models.ViewModels;
+global using AwesomeBank.API.Application.Mappings;
+global using AwesomeBank.API.Application.Commands;
+global using AwesomeBank.API.Application.Models;
 
 global using MediatR;
 global using AutoMapper;

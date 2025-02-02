@@ -23,10 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Queries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AwesomeBank.Infrastructure\AwesomeBank.Infrastructure.csproj" />
   </ItemGroup>
 

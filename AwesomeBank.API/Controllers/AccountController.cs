@@ -1,31 +1,38 @@
-﻿
-using AwesomeBank.API.Commands;
+﻿using AwesomeBank.API.Application.Queries;
+using AwesomeBank.API.Application.Services;
 
-namespace AwesomeBank.API.Controllers
+namespace AwesomeBank.API.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class AccountController(IMediator mediator, ILogger<AccountController> logger, IAccountQueries accountQueries, IStatementService statementService) : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AccountController(IMediator mediator, ILogger<AccountController> logger) : ControllerBase
+    private readonly IMediator _mediator = mediator;
+    private readonly IAccountQueries _accountQueries = accountQueries;
+    private readonly IStatementService _statementService = statementService;
+    private readonly ILogger<AccountController> _logger = logger;
+
+
+    [HttpPost("add-transaction")]
+    public async Task<IActionResult> AddTransaction([FromBody] AddTransactionCommand command)
     {
-        private readonly IMediator _mediator = mediator;
-        private readonly ILogger<AccountController> _logger = logger;
+        _logger.LogInformation("Received request to add transaction for account {AccountNumber}", command.AccountNumber);
 
+        var result = await _mediator.Send(command);
+        return Ok(result);
 
-        [HttpPost("add-transaction")]
-        public async Task<IActionResult> AddTransaction([FromBody] AddTransactionCommand command)
-        {
-            _logger.LogInformation("Received request to add transaction for account {AccountNumber}", command.AccountNumber);
+    }
+    [HttpGet("{accountNumber}/{year}/{month}")]
+    public IActionResult GetTransactions(string accountNumber, string year, string month)
+    {
+        return Ok(this._accountQueries.GetAccountReportForMonth(accountNumber, $"{year}{month}"));
+    }
 
-            try
-            {
-                var result = await _mediator.Send(command);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error adding transaction for account {AccountNumber}", command.AccountNumber);
-                return BadRequest(new { message = ex.Message });
-            }
-        }
+    [HttpGet("{accountNumber}/GetStatement/{year}/{month}")]
+    public IActionResult GetStatement(string accountNumber, string year, string month)
+    {
+        _logger.LogInformation("Received request to get statement for account {AccountNumber}- {Year}-{Month}", accountNumber, year,month);
+
+        return Ok(this._statementService.GetStatement(accountNumber,year,month));
     }
 }

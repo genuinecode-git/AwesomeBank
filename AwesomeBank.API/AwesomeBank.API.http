@@ -4,13 +4,3 @@ GET {{AwesomeBank.API_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
-
-POST {{AwesomeBank.API_HostAddress}}/api/account/add-transaction
-Content-Type: application/json
-
-{
-  "accountNumber": "AC001",
-  "date": "2023-06-26",
-  "type": "D",
-  "amount": 100.00
-}
