@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwesomeBank.Infrastructure"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task", "Task", "{CF07BBA7-B656-44DF-85ED-8077344F0007}"
 	ProjectSection(SolutionItems) = preProject
-		C:\Users\praba\Downloads\Bank Account Interest.md = C:\Users\praba\Downloads\Bank Account Interest.md
+		BankAccountQ.md = BankAccountQ.md
 	EndProjectSection
 EndProject
 Global
