@@ -8,6 +8,17 @@ Simple banking system that handles operations on bank accounts. The system shoul
 - printing account statement
 [Full Requirement](https://github.com/genuinecode-git/AwesomeBank/blob/dev/BankAccountQ.md)
 
+Project was designed on showcase the thinking pattern of the developer when new project starts on following considerations.
+- Scalability
+- Performance
+- Security
+- Readability 
+- Relaibilty
+- Platform Indipendnace 
+- Adoptabilty of code
+- Post Handover (support , bug fixing)
+
+
 ## How to Run
 
 - Clone the repository.
@@ -41,3 +52,4 @@ Simple banking system that handles operations on bank accounts. The system shoul
 - In future application will use to run on multiple clients by connecting to the API (API Created for futureproof)
 - In future application will interact with Database. (Infranstrcure layer is configurable for any Database type)
 - Application is deigned for support Horizontal and vertical scaling if required.
+- Application will grow when new changes and requirements comes.
