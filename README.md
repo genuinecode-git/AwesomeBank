@@ -35,6 +35,7 @@ Simple banking system that handles operations on bank accounts. The system shoul
 - Dependancy Injection
 
 ## Assumptions
+- Interst will not be added to balance when account have older transactions than statement month. (As per given data set)
 - User will not use withdraw transaction if the amount is not availble in account balance.
 - User will input InterstRules and Transactions before check for Statement. (for best experince )
 - In future application will use to run on multiple clients by connecting to the API (API Created for futureproof)
