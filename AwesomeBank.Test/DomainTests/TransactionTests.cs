@@ -7,7 +7,7 @@ public class TransactionTests
     {
         string dummyTransactionId = "20230505-01";
         DateTime dateNow = DateTime.UtcNow;
-        string type = "D";
+        string type = TransactionType.Deposit;
         decimal amount = 101.30m;
 
         Transaction transaction=new(dummyTransactionId, dateNow,type,amount);
@@ -25,7 +25,7 @@ public class TransactionTests
     {
         string dummyTransactionId = "20230505-01";
         DateTime dateNow = DateTime.UtcNow;
-        string type = "d";
+        string type = TransactionType.Deposit.ToLower();
         decimal amount = 101.30m;
 
         Transaction transaction = new(dummyTransactionId, dateNow, type, amount);
@@ -42,7 +42,7 @@ public class TransactionTests
     public void Constructor_ArgumentException_TransactionId_IsEmpty()
     {
         DateTime dateNow = DateTime.UtcNow;
-        string type = "D";
+        string type = TransactionType.Deposit;
         decimal amount = 101.30m;
 
         ArgumentException ex = Assert.Throws<ArgumentException>(() => new Transaction(string.Empty, dateNow, type, amount));
@@ -54,7 +54,7 @@ public class TransactionTests
     {
         string dummyTransactionId = "20230505-01";
         DateTime dateNow = new DateTime();
-        string type = "D";
+        string type = TransactionType.Deposit;
         decimal amount = 101.30m;
 
         ArgumentException ex = Assert.Throws<ArgumentException>(() => new Transaction(dummyTransactionId, dateNow, type, amount));

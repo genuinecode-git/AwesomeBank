@@ -26,7 +26,7 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
         foreach (var transaction in account.Transactions)
         {
             this._logger.LogDebug("Statement balance calculating for : {Transaction}", transaction.TransactionId);
-            balance += transaction.Type.Equals("W", StringComparison.CurrentCultureIgnoreCase) ? -transaction.Amount : transaction.Amount;
+            balance += transaction.Type.Equals(TransactionType.Withdrawal, StringComparison.CurrentCultureIgnoreCase) ? -transaction.Amount : transaction.Amount;
             statementEntries.Add(new StatementEntryModel(transaction.Date, transaction.TransactionId, transaction.Type, transaction.Amount, balance));
         }
 
@@ -38,7 +38,7 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
         if (interest > 0)
         {
             balance += interest;
-            statementEntries.Add(new StatementEntryModel(new DateTime(yearInt, monthInt, DateTime.DaysInMonth(yearInt, monthInt)), "", "I", interest, balance));
+            statementEntries.Add(new StatementEntryModel(new DateTime(yearInt, monthInt, DateTime.DaysInMonth(yearInt, monthInt)), "", TransactionType.Interst, interest, balance));
         }
 
         return new AccountStatementModel(account.AccountNumber, [..statementEntries.Where(x=>x.Date >= new DateTime(yearInt, monthInt, 1).Date)]);
@@ -67,7 +67,7 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
 
         decimal balance = account.Transactions
             .Where(x => x.Date.Date < dateStart)
-            .Sum(s => s.Type.Equals("W", StringComparison.OrdinalIgnoreCase) ? -s.Amount : s.Amount);
+            .Sum(s => s.Type.Equals(TransactionType.Withdrawal, StringComparison.OrdinalIgnoreCase) ? -s.Amount : s.Amount);
         this._logger.LogDebug("Initial balance before interest calculation: {Balance}.", balance);
 
         List<StatementEntryRecordModel> records =[new(dateStart, balance, 0m)];
@@ -79,8 +79,8 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
             .Select(g => new TransactionViewModel
             {
                 Date = g.Key,
-                Amount = g.Sum(t => t.Type.Equals("D", StringComparison.OrdinalIgnoreCase) ? t.Amount : -t.Amount),
-                Type = "D"
+                Amount = g.Sum(t => t.Type.Equals(TransactionType.Deposit, StringComparison.OrdinalIgnoreCase) ? t.Amount : -t.Amount),
+                Type = TransactionType.Deposit
             })
             .OrderBy(x => x.Date)];
 
@@ -88,7 +88,7 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
 
         foreach (var transaction in dailyBalances)
         {
-            balance += transaction.Type.Equals("W", StringComparison.OrdinalIgnoreCase) ? -transaction.Amount : transaction.Amount;
+            balance += transaction.Type.Equals(TransactionType.Withdrawal, StringComparison.OrdinalIgnoreCase) ? -transaction.Amount : transaction.Amount;
             this._logger.LogDebug("Updated balance after transaction on {TransactionDate}: {Balance}.", transaction.Date, balance);
 
             List<InterestRuleViewModel> rulesToApply = [.. interestRules.Where(x => x.EndDate.Value.Date > transaction.Date.Date).OrderBy(o => o.Date)];
@@ -149,7 +149,7 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
 
         //Calculate all sum before strat interst rules 
         var transactionsEffectedRates = account.Transactions.Where(x => x.Date.Date < dateStart);
-        balance = transactionsEffectedRates.Sum(s => s.Type.Equals("W") ? -s.Amount : s.Amount);
+        balance = transactionsEffectedRates.Sum(s => s.Type.Equals(TransactionType.Withdrawal) ? -s.Amount : s.Amount);
 
         records.Add(new(interestRules[0].Date.Date.AddDays(-1), balance, 0m));
 
@@ -160,8 +160,8 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
             .GroupBy(x => x.Date.Date).Select(g => new TransactionViewModel()
             {
                 Date = g.Key,
-                Amount = g.Sum(t => t.Type.Equals("D", StringComparison.OrdinalIgnoreCase) ? t.Amount : -t.Amount),
-                Type = "D"
+                Amount = g.Sum(t => t.Type.Equals(TransactionType.Deposit, StringComparison.OrdinalIgnoreCase) ? t.Amount : -t.Amount),
+                Type = TransactionType.Deposit
             })
             .OrderBy(x => x.Date)];
 
@@ -175,7 +175,7 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
             {
 
                 //add current transaction to balance 
-                balance += current.Value.Type.Equals("W") ? -current.Value.Amount : current.Value.Amount;
+                balance += current.Value.Type.Equals(TransactionType.Withdrawal) ? -current.Value.Amount : current.Value.Amount;
                 //Only rules valid within period
                 var rulesToApply = interestRules.Where(x => x.EndDate.Value.Date > current.Value.Date.Date).OrderBy(o => o.Date).ToList();
                 DateTime nextItemDate = current.Next == null ? DateTime.MaxValue : current.Next.Value.Date.Date.AddDays(-1);

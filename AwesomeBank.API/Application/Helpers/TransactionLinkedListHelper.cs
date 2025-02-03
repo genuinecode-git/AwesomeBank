@@ -1,25 +1,8 @@
-﻿using AwesomeBank.Domain.Entities;
-
+﻿
 namespace AwesomeBank.API.Application.Helpers;
 
 public static class TransactionLinkedListHelper
 {
-    public static List<TransactionViewModel> GetTransactionsBeforeByDate(this LinkedList<TransactionViewModel> transactions, DateTime filterDate)
-    {
-        List<TransactionViewModel> result = [];
-        LinkedListNode<TransactionViewModel> current = transactions.First;
-
-        while (current != null && current.Next != null)
-        {
-            if (current.Next.Value.Date.Date < filterDate)
-            {
-                result.Add(current.Value);
-            }
-            current = current.Next;
-        }
-
-        return result;
-    }
     public static DateTime GetLastDayOfMonth(this DateTime date)
     {
         int lastDay = DateTime.DaysInMonth(date.Year, date.Month);
