@@ -16,6 +16,7 @@ namespace AwesomeBank.API.Application.Queries
 
             var transactionsForMonth = account.Transactions
                 .Where(t => t.Date.ToString("yyyyMM") == yearMonth)
+                .Select(_mapper.Map<TransactionViewModel>)
                 .OrderBy(t => t.Date);
 
             AccountViewModel result = _mapper.Map<AccountViewModel>(account);

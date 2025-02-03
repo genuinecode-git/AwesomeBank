@@ -28,4 +28,18 @@
             Balance = balance;
         }
     }
+
+    public class StatementEntryRecordModel
+    {
+        public DateTime Date { get; set; }
+        public decimal Balance { get; set; }
+        public decimal Interst { get; set; }
+
+        public StatementEntryRecordModel(DateTime date,decimal balance, decimal interst)
+        {
+            Date = date;
+            Balance = balance;
+            Interst = interst;
+        }
+    }
 }

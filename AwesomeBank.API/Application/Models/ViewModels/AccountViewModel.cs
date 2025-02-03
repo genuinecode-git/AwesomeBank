@@ -4,7 +4,7 @@
     {
         public string AccountNumber { get; set; }
         public decimal Balance { get; set; }
-        public List<Transaction> Transactions { get; set; }
+        public List<TransactionViewModel> Transactions { get; set; }
     }
 
     public class TransactionViewModel

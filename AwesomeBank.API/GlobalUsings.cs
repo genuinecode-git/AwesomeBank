@@ -6,6 +6,7 @@ global using AwesomeBank.API.Application.Models.ViewModels;
 global using AwesomeBank.API.Application.Mappings;
 global using AwesomeBank.API.Application.Commands;
 global using AwesomeBank.API.Application.Models;
+global using AwesomeBank.API.Application.Helpers;
 
 global using MediatR;
 global using AutoMapper;
