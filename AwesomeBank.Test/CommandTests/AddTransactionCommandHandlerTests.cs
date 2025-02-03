@@ -1,11 +1,5 @@
-﻿
+﻿namespace AwesomeBank.CommandTests.Test;
 
-
-using AutoMapper;
-using AwesomeBank.API.Application.Models.ViewModels;
-using System.Linq.Expressions;
-
-namespace AwesomeBank.CommandTests.Test;
 [TestFixture]
 public class AddTransactionCommandHandlerTests
 {
