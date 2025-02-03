@@ -1,5 +1,5 @@
 # Simple Banking App
-[![tech](https://img.shields.io/badge/powredby-.netcore-purple.svg)](https://dotnet.microsoft.com/en-us/download) [![NUnit License](https://img.shields.io/badge/powredby-NUnit-green.svg)](https://nunit.org/) [![Mediator](https://img.shields.io/badge/powredby-MediatR-blue.svg)](https://www.nuget.org/packages/mediatr/) [![DomainDrivenDesign](https://img.shields.io/badge/powredby-DDD-red.svg)](https://en.wikipedia.org/wiki/Domain-driven_design) [![Swagger](https://img.shields.io/badge/powredby-swagger-gree.svg)](https://swagger.io/)
+[![tech](https://img.shields.io/badge/powredby-.netcore-purple.svg)](https://dotnet.microsoft.com/en-us/download) [![NUnit License](https://img.shields.io/badge/powredby-NUnit-green.svg)](https://nunit.org/) [![Mediator](https://img.shields.io/badge/powredby-MediatR-blue.svg)](https://www.nuget.org/packages/mediatr/) [![DomainDrivenDesign](https://img.shields.io/badge/powredby-DDD-red.svg)](https://en.wikipedia.org/wiki/Domain-driven_design) [![Swagger](https://img.shields.io/badge/powredby-swagger-gree.svg)](https://swagger.io/) [![SeriLog](https://img.shields.io/badge/powredby-serilog-orange.svg)](https://serilog.net/)
 
 
 Simple banking system that handles operations on bank accounts. The system should be capable of the following features:
@@ -23,3 +23,20 @@ Simple banking system that handles operations on bank accounts. The system shoul
 |AwesomeBank.API| Created for futuristic purspective. Interaction between Infranstrcuture is implimented here. |
 |AwesomeBank.Console| Presntation layer. |
 |AwesomeBank.Test| All Unit tests are here.|
+
+## Design Patterns and Methods Used
+- Domain Driven Design
+- Repository Pattern
+- Mediator Pattern
+- Unit Of Work
+- CQRS
+- SOLID
+- TDD
+- Dependancy Injection
+
+## Assumptions
+- User will not use withdraw transaction if the amount is not availble in account balance.
+- User will input InterstRules and Transactions before check for Statement. (for best experince )
+- In future application will use to run on multiple clients by connecting to the API (API Created for futureproof)
+- In future application will interact with Database. (Infranstrcure layer is configurable for any Database type)
+- Application is deigned for support Horizontal and vertical scaling if required.
