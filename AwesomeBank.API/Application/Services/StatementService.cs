@@ -1,6 +1,5 @@
 ﻿using AwesomeBank.API.Application.Queries;
 using System.Data;
-using System.Linq;
 
 namespace AwesomeBank.API.Application.Services;
 

@@ -13,7 +13,7 @@ public class AccountController(IMediator mediator, ILogger<AccountController> lo
     private readonly ILogger<AccountController> _logger = logger;
 
 
-    [HttpPost("add-transaction")]
+    [HttpPost("AddTransaction")]
     public async Task<IActionResult> AddTransaction([FromBody] AddTransactionCommand command)
     {
         _logger.LogInformation("Received request to add transaction for account {AccountNumber}", command.AccountNumber);
