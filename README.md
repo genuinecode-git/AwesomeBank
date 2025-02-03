@@ -12,9 +12,9 @@ Project was designed on showcase the thinking pattern of the developer when new 
 - Scalability
 - Performance
 - Security
-- Readability 
+- Readability
 - Relaibilty
-- Platform Indipendnace 
+- Platform Indipendnace
 - Adoptabilty of code
 - Post Handover (support , bug fixing)
 
