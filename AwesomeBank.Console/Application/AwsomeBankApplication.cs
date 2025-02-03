@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using AwesomeBank.API.Application.Helpers;
+using System.Globalization;
 
 namespace AwesomeBank.Console.Application;
 
@@ -55,7 +56,7 @@ public static class AwsomeBankApplication
             string account = parts[1].Trim();
             string type = parts[2].Trim().ToUpper();
 
-            if (type != "D" && type != "W")
+            if (type != TransactionType.Deposit && type != TransactionType.Withdrawal)
             {
                 System.Console.WriteLine("Invalid type. Use D for deposit or W for withdrawal.");
                 continue;
