@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AwesomeBank.API\AwesomeBank.API.csproj" />
+    <ProjectReference Include="..\AwesomeBank.Console\AwesomeBank.Console.csproj" />
     <ProjectReference Include="..\AwesomeBank.Domain\AwesomeBank.Domain.csproj" />
   </ItemGroup>
 
