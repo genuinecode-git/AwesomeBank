@@ -3,10 +3,10 @@ name: Build, Test and Create Release Package for .NET 8 Console Application
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   build:
