@@ -1,5 +1,4 @@
-﻿
-namespace AwesomeBank.API.Application.Mappings
+﻿namespace AwesomeBank.API.Application.Mappings
 {
     public class AutoMapperProfile : Profile
     {

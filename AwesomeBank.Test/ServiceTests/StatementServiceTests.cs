@@ -262,7 +262,6 @@ public partial class StatementServiceTests
         });
     }
 
-
     [Test]
     public void GetStatement_ValidAccountWithTransactionsSameDayMutipleRules_ValidStatement()
     {
@@ -345,5 +344,3 @@ public partial class StatementServiceTests
         Assert.That(interest, Is.EqualTo(0.39m));
     }
 }
-
-

@@ -8,9 +8,11 @@ namespace AwesomeBank.API.Application.Commands
 
         [Required]
         public DateTime Date { get; set; }
+
         [Required]
         [Length(1, 1)]
         public string Type { get; set; }
+
         [Required]
         public decimal Amount { get; set; }
 

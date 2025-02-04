@@ -1,5 +1,4 @@
-﻿
-namespace AwesomeBank.CommandTests.Test;
+﻿namespace AwesomeBank.CommandTests.Test;
 
 [TestFixture]
 public class AddInterestRuleCommandHandlerTests
@@ -23,7 +22,7 @@ public class AddInterestRuleCommandHandlerTests
     {
         // Arrange
         var date = new DateTime(2024, 3, 1);
-        var command = new AddInterestRuleCommand(date,"RULE03", 3.0m);
+        var command = new AddInterestRuleCommand(date, "RULE03", 3.0m);
 
         var newRule = new InterestRule("RULE03", date, 3.0m);
         var rulesList = new List<InterestRule> { newRule };
@@ -85,7 +84,6 @@ public class AddInterestRuleCommandHandlerTests
             Assert.That(result.Count, Is.EqualTo(1));
         });
     }
-
 
     [Test]
     public void Handle_ThrowException_Rule_RateIsInvalid()

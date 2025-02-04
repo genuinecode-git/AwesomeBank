@@ -1,10 +1,9 @@
-﻿
-
-namespace AwesomeBank.Console.Services;
+﻿namespace AwesomeBank.Console.Services;
 
 public class InterestRuleService(CommandHandleHelper commandHandle)
 {
     private readonly CommandHandleHelper _commandHandle = commandHandle;
+
     public async Task DefineInterestRulesAsync()
     {
         System.Console.WriteLine("Please enter interest rules details in <Date> <RuleId> <Rate in %> format (or enter blank to go back):");

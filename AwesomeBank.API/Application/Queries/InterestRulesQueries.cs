@@ -1,5 +1,4 @@
-﻿
-namespace AwesomeBank.API.Application.Queries
+﻿namespace AwesomeBank.API.Application.Queries
 {
     public class InterestRulesQueries(IUnitOfWork unitOfWork, IMapper mapper, ILogger<InterestRulesQueries> logger) : IInterestRulesQueries
     {

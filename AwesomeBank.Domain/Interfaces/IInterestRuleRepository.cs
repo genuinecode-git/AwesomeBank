@@ -1,5 +1,4 @@
-﻿
-namespace AwesomeBank.Domain.Interfaces;
+﻿namespace AwesomeBank.Domain.Interfaces;
 
 public interface IInterestRuleRepository : IRepository<InterestRule>
 {

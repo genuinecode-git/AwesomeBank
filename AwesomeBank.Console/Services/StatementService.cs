@@ -4,7 +4,8 @@ namespace AwesomeBank.Console.Services;
 
 public class StatementService(IStatementService statementService)
 {
-    private IStatementService _statementService  = statementService;
+    private IStatementService _statementService = statementService;
+
     public async Task PrintStatementAsync()
     {
         System.Console.WriteLine("Please enter account and month to generate the statement <Account> <Year><Month>");
@@ -33,17 +34,15 @@ public class StatementService(IStatementService statementService)
 
         if (result.IsValid)
         {
-                var statement = _statementService.GetStatement(request);
+            var statement = _statementService.GetStatement(request);
 
-                if (statement == null)
-                {
-                    System.Console.WriteLine($"No transactions found for account {request.AccountNumber} in {request.Year}-{request.Month}.");
-                    return;
-                }
+            if (statement == null)
+            {
+                System.Console.WriteLine($"No transactions found for account {request.AccountNumber} in {request.Year}-{request.Month}.");
+                return;
+            }
 
-                DisplayStatement(statement);
-           
-
+            DisplayStatement(statement);
         }
         else
         {
@@ -56,13 +55,12 @@ public class StatementService(IStatementService statementService)
             System.Console.WriteLine("\n");
             return;
         }
-
     }
 
     private void DisplayStatement(AccountStatementModel statement)
     {
         System.Console.WriteLine($"\nAccount: {statement.AccountNumber}");
-       
+
         System.Console.WriteLine("| Date     | Txn Id      | Type | Amount  | Balance  |");
         if (statement.Entries.Count == 0)
         {
@@ -75,7 +73,5 @@ public class StatementService(IStatementService statementService)
 
             System.Console.WriteLine($"| {txn.Date:yyyyMMdd} | {txnIdDisplay} | {txn.Type,-4} | {txn.Amount,7:F2} | {txn.Balance,8:F2} |");
         }
-        
     }
 }
-

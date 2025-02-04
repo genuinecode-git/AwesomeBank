@@ -1,12 +1,10 @@
-﻿
-
-namespace AwesomeBank.Console.Helpers;
+﻿namespace AwesomeBank.Console.Helpers;
 
 public class CommandHandleHelper(IMediator mediator)
 {
     private readonly IMediator _mediator = mediator;
 
-    public async Task<TReturn?> HandleCommandAsync<TCommand, TValidator,TReturn>(TCommand command, TValidator validator)
+    public async Task<TReturn?> HandleCommandAsync<TCommand, TValidator, TReturn>(TCommand command, TValidator validator)
         where TCommand : class
         where TValidator : AbstractValidator<TCommand>
     {

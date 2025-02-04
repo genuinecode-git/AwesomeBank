@@ -1,8 +1,8 @@
-﻿
-namespace AwesomeBank.Infrastructure.Repositories;
+﻿namespace AwesomeBank.Infrastructure.Repositories;
 
 public class InterestRuleRepository : InMemoryRepository<InterestRule>, IInterestRuleRepository
 {
-    public InterestRuleRepository() : base(a => a.RuleId) { }
-
+    public InterestRuleRepository() : base(a => a.RuleId)
+    {
+    }
 }

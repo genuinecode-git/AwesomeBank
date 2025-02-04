@@ -108,8 +108,8 @@ public class AddTransactionCommandHandlerTests
     {
         // Arrange
         var account = new Account("AC001");
-        account.AddTransaction(DateTime.UtcNow,TransactionType.Deposit,100);
-        account.AddTransaction(DateTime.UtcNow,TransactionType.Withdrawal,80);
+        account.AddTransaction(DateTime.UtcNow, TransactionType.Deposit, 100);
+        account.AddTransaction(DateTime.UtcNow, TransactionType.Withdrawal, 80);
 
         _unitOfWorkMock.Setup(u => u.Accounts.FirstOrDefaultWithIncludes(
                 It.IsAny<Expression<Func<Account, bool>>>(),

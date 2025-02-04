@@ -59,7 +59,6 @@ public class AwsomeBankApplication(
             _logger.LogError("\nException Occurs : {exception}", ex.Message);
         }
         await DisplayIntermedMenu();
-
     }
 
     protected override async Task HandlePrintStatement()

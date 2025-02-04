@@ -1,5 +1,4 @@
-﻿
-namespace AwesomeBank.API.Application.Helpers;
+﻿namespace AwesomeBank.API.Application.Helpers;
 
 public static class TransactionLinkedListHelper
 {
@@ -8,6 +7,7 @@ public static class TransactionLinkedListHelper
         int lastDay = DateTime.DaysInMonth(date.Year, date.Month);
         return new DateTime(date.Year, date.Month, lastDay);
     }
+
     public static List<InterestRuleViewModel> FillEndDates(this IEnumerable<InterestRuleViewModel> rules)
     {
         var interestRules = rules.OrderBy(r => r.Date).ToList();
@@ -20,5 +20,4 @@ public static class TransactionLinkedListHelper
         interestRules[^1].EndDate = DateTime.MaxValue;
         return interestRules;
     }
-
 }

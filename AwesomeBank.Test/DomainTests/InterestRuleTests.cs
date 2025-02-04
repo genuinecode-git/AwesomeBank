@@ -9,7 +9,7 @@ public class InterestRuleTests
         DateTime dateNow = DateTime.UtcNow;
         decimal rate = 10.50m;
 
-        InterestRule interestRule=new(dummyRuleId, dateNow,rate);
+        InterestRule interestRule = new(dummyRuleId, dateNow, rate);
         Assert.Multiple(() =>
         {
             Assert.That(interestRule.Rate, Is.EqualTo(rate));
@@ -53,7 +53,7 @@ public class InterestRuleTests
     [Test]
     public void Constructor_ArgumentException_RuleId_IsEmpty()
     {
-        string dummyRuleId =string.Empty;
+        string dummyRuleId = string.Empty;
         DateTime dateNow = DateTime.UtcNow;
         decimal rate = 10.50m;
 
@@ -93,7 +93,6 @@ public class InterestRuleTests
         ArgumentException ex = Assert.Throws<ArgumentException>(() => new InterestRule(dummyRuleId, dateNow, rate));
         Assert.That(ex.Message, Does.Contain("Rate must be in between 0 and 100"));
     }
-
 
     [Test]
     public void Constructor_ArgumentException_Allparameters_IsInvalid()

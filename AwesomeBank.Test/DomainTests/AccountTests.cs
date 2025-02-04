@@ -1,6 +1,4 @@
-﻿
-
-namespace AwesomeBank.Test.Domain;
+﻿namespace AwesomeBank.Test.Domain;
 
 [TestFixture]
 public class AccountTests

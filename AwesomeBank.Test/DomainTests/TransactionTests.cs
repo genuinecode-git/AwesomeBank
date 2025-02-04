@@ -10,7 +10,7 @@ public class TransactionTests
         string type = TransactionType.Deposit;
         decimal amount = 101.30m;
 
-        Transaction transaction=new(dummyTransactionId, dateNow,type,amount);
+        Transaction transaction = new(dummyTransactionId, dateNow, type, amount);
         Assert.Multiple(() =>
         {
             Assert.That(transaction.Type, Is.EqualTo(type));
@@ -84,6 +84,7 @@ public class TransactionTests
         ArgumentException ex = Assert.Throws<ArgumentException>(() => new Transaction(dummyTransactionId, dateNow, type, amount));
         Assert.That(ex.Message, Does.Contain("Transaction type is required and length must be 1."));
     }
+
     [Test]
     public void Constructor_ArgumentException_Type_IsLargeinLength()
     {

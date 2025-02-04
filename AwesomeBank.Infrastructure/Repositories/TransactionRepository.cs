@@ -1,7 +1,8 @@
-﻿
-namespace AwesomeBank.Infrastructure.Repositories;
+﻿namespace AwesomeBank.Infrastructure.Repositories;
 
 public class TransactionRepository : InMemoryRepository<Transaction>, ITransactionRepository
 {
-    public TransactionRepository() : base(t => t.TransactionId) { }
+    public TransactionRepository() : base(t => t.TransactionId)
+    {
+    }
 }

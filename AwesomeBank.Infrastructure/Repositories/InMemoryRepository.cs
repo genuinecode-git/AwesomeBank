@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace AwesomeBank.Infrastructure.Repositories;
+﻿namespace AwesomeBank.Infrastructure.Repositories;
 
 public class InMemoryRepository<T> : IRepository<T> where T : class
 {
@@ -44,7 +42,6 @@ public class InMemoryRepository<T> : IRepository<T> where T : class
         if (string.IsNullOrEmpty(key)) throw new ArgumentException("Invalid entity key.");
         _store[key] = entity;
     }
-
 
     public void Update(T entity)
     {

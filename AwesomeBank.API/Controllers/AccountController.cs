@@ -13,7 +13,6 @@ public class AccountController(IMediator mediator, ILogger<AccountController> lo
     private readonly IStatementService _statementService = statementService;
     private readonly ILogger<AccountController> _logger = logger;
 
-
     [HttpPost("AddTransaction")]
     public async Task<IActionResult> AddTransaction([FromBody] AddTransactionCommand command)
     {
@@ -21,8 +20,8 @@ public class AccountController(IMediator mediator, ILogger<AccountController> lo
 
         var result = await _mediator.Send(command);
         return Ok(result);
-
     }
+
     [HttpGet("{accountNumber}/{year}/{month}")]
     public IActionResult GetTransactions(string accountNumber, string year, string month)
     {

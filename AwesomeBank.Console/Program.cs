@@ -2,7 +2,6 @@
 
 using AwesomeBank.API.Application.Mappings;
 using AwesomeBank.API.Application.Queries;
-using AwesomeBank.Console.Helpers;
 using AwesomeBank.Console.Services;
 using AwesomeBank.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,7 +20,6 @@ var host = Host.CreateDefaultBuilder()
 
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AddInterestRuleCommandHandler).Assembly));
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AddTransactionCommandHandler).Assembly));
-
 
         // Configure Serilog from appsettings.json
         var configuration = new ConfigurationBuilder()
@@ -42,16 +40,14 @@ var host = Host.CreateDefaultBuilder()
         services.AddSingleton<IInterestRulesQueries, InterestRulesQueries>();
         services.AddSingleton<IStatementService, AwesomeBank.API.Application.Services.StatementService>();
         services.AddSingleton<AwesomeBank.Console.Services.StatementService>();
-        services.AddSingleton<TransactionService>(); 
+        services.AddSingleton<TransactionService>();
         services.AddSingleton<InterestRuleService>();
         services.AddSingleton<CommandHandleHelper>();
-
 
         services.AddSingleton<IConsoleApplication, AwsomeBankApplication>();
     })
     .UseSerilog() // Integrate Serilog
     .Build();
-
 
 var consoleApplication = host.Services.GetRequiredService<IConsoleApplication>();
 await consoleApplication.Run();

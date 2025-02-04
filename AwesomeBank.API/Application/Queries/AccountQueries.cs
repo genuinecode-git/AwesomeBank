@@ -1,5 +1,4 @@
-﻿
-namespace AwesomeBank.API.Application.Queries
+﻿namespace AwesomeBank.API.Application.Queries
 {
     public class AccountQueries(IUnitOfWork unitOfWork, IMapper mapper, ILogger<AccountQueries> logger) : IAccountQueries
     {
@@ -31,7 +30,7 @@ namespace AwesomeBank.API.Application.Queries
             Account account = _unitOfWork.Accounts.FirstOrDefaultWithIncludes(a => a.AccountNumber == accountNumber, a => a.Transactions)
                 ?? throw new ArgumentException("Account Not found.");
 
-            return _mapper.Map<AccountViewModel>(account); 
+            return _mapper.Map<AccountViewModel>(account);
         }
     }
 }

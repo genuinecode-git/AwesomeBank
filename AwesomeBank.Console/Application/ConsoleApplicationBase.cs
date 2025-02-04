@@ -1,5 +1,4 @@
-﻿
-namespace AwesomeBank.Console.Application;
+﻿namespace AwesomeBank.Console.Application;
 
 public abstract class ConsoleApplicationBase(ILogger<ConsoleApplicationBase> logger) : IConsoleApplication
 {
@@ -31,15 +30,19 @@ public abstract class ConsoleApplicationBase(ILogger<ConsoleApplicationBase> log
             case "T":
                 await HandleTransactions();
                 break;
+
             case "I":
                 await HandleInterestRules();
                 break;
+
             case "P":
                 await HandlePrintStatement();
                 break;
+
             case "Q":
                 Environment.Exit(0);
                 break;
+
             default:
                 System.Console.WriteLine("Invalid option, try again.");
                 break;
@@ -47,6 +50,8 @@ public abstract class ConsoleApplicationBase(ILogger<ConsoleApplicationBase> log
     }
 
     protected virtual Task HandleTransactions() => Task.CompletedTask;
+
     protected virtual Task HandleInterestRules() => Task.CompletedTask;
+
     protected virtual Task HandlePrintStatement() => Task.CompletedTask;
 }

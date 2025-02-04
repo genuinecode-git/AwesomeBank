@@ -1,6 +1,5 @@
-﻿
-namespace AwesomeBank.Domain.Interfaces;
+﻿namespace AwesomeBank.Domain.Interfaces;
 
-public interface IAccountRepository: IRepository<Account>
+public interface IAccountRepository : IRepository<Account>
 {
 }

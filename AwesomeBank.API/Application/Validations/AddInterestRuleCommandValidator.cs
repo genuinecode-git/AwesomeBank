@@ -1,6 +1,6 @@
 ﻿namespace AwesomeBank.API.Application.Validations
 {
-    public class AddInterestRuleCommandValidator:AbstractValidator<AddInterestRuleCommand>
+    public class AddInterestRuleCommandValidator : AbstractValidator<AddInterestRuleCommand>
     {
         public AddInterestRuleCommandValidator()
         {

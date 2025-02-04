@@ -10,8 +10,8 @@ public static class InfrastructureExtention
         //Register MediatR
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
-        services.AddSingleton<IUnitOfWork, UnitOfWork>(); 
-        services.AddScoped<IAccountQueries, AccountQueries>(); 
+        services.AddSingleton<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IAccountQueries, AccountQueries>();
         services.AddScoped<IInterestRulesQueries, InterestRulesQueries>();
         services.AddScoped<IStatementService, StatementService>();
         return services;

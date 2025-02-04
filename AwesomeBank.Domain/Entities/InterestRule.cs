@@ -1,5 +1,4 @@
-﻿
-namespace AwesomeBank.Domain.Entities
+﻿namespace AwesomeBank.Domain.Entities
 {
     public partial class InterestRule
     {

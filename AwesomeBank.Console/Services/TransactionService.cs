@@ -1,6 +1,4 @@
-﻿
-
-namespace AwesomeBank.Console.Services;
+﻿namespace AwesomeBank.Console.Services;
 
 public class TransactionService(CommandHandleHelper commandHandle)
 {
@@ -34,7 +32,6 @@ public class TransactionService(CommandHandleHelper commandHandle)
             DisplayTransactions(results);
         }
     }
-
 
     private bool ValidateTransaction(string[] parts, out DateTime date, out string account, out string type, out decimal amount)
     {

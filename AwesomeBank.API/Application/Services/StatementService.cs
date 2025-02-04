@@ -9,6 +9,7 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
     private readonly IAccountQueries _accountQueries = accountQueries;
     private readonly IInterestRulesQueries _interestRulesQueries = interestRulesQueries;
     private readonly ILogger<StatementService> _logger = logger;
+
     public AccountStatementModel GetStatement(StatementRequest request)
     {
         var account = _accountQueries.GetAccount(request.AccountNumber);
@@ -37,7 +38,7 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
         // Filter transactions once for the given date range
         var transactionsInRange = account.Transactions
             .Where(x => x.Date >= dateStart && x.Date <= dateEnd)
-            .OrderBy(x => x.Date) 
+            .OrderBy(x => x.Date)
             .ToList();
 
         var statementEntries = new List<StatementEntryModel>();
@@ -65,7 +66,7 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
         this._logger.LogDebug("Date range for calculation: {DateStart} to {DateEnd}.", dateStart, dateEnd);
 
         List<InterestRuleViewModel> interestRules = [.. this._interestRulesQueries.GetAllInterstRules()
-            .Where(x => x.Date <= dateEnd) 
+            .Where(x => x.Date <= dateEnd)
             .OrderBy(r => r.Date)
             .GroupBy(r => r.Date)
             .Select(g => g.OrderByDescending(r => r.CreatedDate).First())
@@ -156,7 +157,7 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
         DateTime dateStart = new DateTime(year, month, 1).Date;
         DateTime dateEnd = dateStart.GetLastDayOfMonth();
 
-        //Avoid geting future rules 
+        //Avoid geting future rules
         List<InterestRuleViewModel> interestRules = this._interestRulesQueries.GetAllInterstRules()
             .Where(x => x.Date <= dateEnd)
             .OrderBy(r => r.Date).ToList()
@@ -164,8 +165,7 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
 
         if (interestRules == null) throw new ArgumentException("No Rules defined.");
 
-
-        //Calculate all sum before strat interst rules 
+        //Calculate all sum before strat interst rules
         var transactionsEffectedRates = account.Transactions.Where(x => x.Date.Date < dateStart);
         balance = transactionsEffectedRates.Sum(s => s.Type.Equals(TransactionType.Withdrawal) ? -s.Amount : s.Amount);
 
@@ -183,7 +183,6 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
             })
             .OrderBy(x => x.Date)];
 
-
         LinkedList<TransactionViewModel> transactionsLinkedList = new(dailyBalances);
 
         if (transactionsLinkedList != null)
@@ -191,8 +190,7 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
             LinkedListNode<TransactionViewModel> current = transactionsLinkedList.First;
             while (current != null)
             {
-
-                //add current transaction to balance 
+                //add current transaction to balance
                 balance += current.Value.Type.Equals(TransactionType.Withdrawal) ? -current.Value.Amount : current.Value.Amount;
                 //Only rules valid within period
                 var rulesToApply = interestRules.Where(x => x.EndDate.Value.Date > current.Value.Date.Date).OrderBy(o => o.Date).ToList();
@@ -204,7 +202,7 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
                 {
                     int numberOfDays = 0;
 
-                    //Get Number of days 
+                    //Get Number of days
                     if (rule.Date.Date >= current.Value.Date.Date && nextItemDate <= rule.EndDate.Value.Date)
                     {
                         numberOfDays = (nextItemDate - rule.Date.Date).Days + 1;
@@ -239,8 +237,6 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
             }
         }
 
-
         return Math.Round(records.Sum(x => x.Interst) / 365, 2); // Annualized interest
     }
-
 }

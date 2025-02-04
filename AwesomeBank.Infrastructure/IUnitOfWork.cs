@@ -1,5 +1,4 @@
-﻿
-namespace AwesomeBank.Infrastructure;
+﻿namespace AwesomeBank.Infrastructure;
 
 public interface IUnitOfWork
 {

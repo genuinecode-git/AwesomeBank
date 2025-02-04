@@ -4,7 +4,7 @@ namespace AwesomeBank.API.Application.Validations
 {
     public class StatementRequestValidator : AbstractValidator<StatementRequest>
     {
-        public StatementRequestValidator() 
+        public StatementRequestValidator()
         {
             RuleFor(x => x.AccountNumber)
                .NotEmpty().WithMessage("Account Number is Required.");

@@ -1,7 +1,7 @@
 ﻿namespace AwesomeBank.API.Application.Commands
 {
-    public class AddInterestRuleCommandHandler(IUnitOfWork unitOfWork, 
-        IMapper mapper, 
+    public class AddInterestRuleCommandHandler(IUnitOfWork unitOfWork,
+        IMapper mapper,
         ILogger<AddInterestRuleCommandHandler> logger) : IRequestHandler<AddInterestRuleCommand, List<InterestRuleViewModel>>
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
@@ -32,12 +32,11 @@
             InterestRule newRule = new(request.RuleId, request.Date, request.Rate);
             this._unitOfWork.InterestRules.Add(newRule);
 
-            this._logger.LogInformation("[Completed] New interest rule added: {RuleId} - {Rate}%", request.RuleId,request.Rate);
+            this._logger.LogInformation("[Completed] New interest rule added: {RuleId} - {Rate}%", request.RuleId, request.Rate);
 
             return [.. _unitOfWork.InterestRules.GetAll()
                         .OrderBy(r => r.Date)
                         .Select(s=> this._mapper.Map<InterestRuleViewModel>(s))];
-
         }
     }
 }
