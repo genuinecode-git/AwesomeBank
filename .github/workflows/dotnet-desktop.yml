@@ -1,12 +1,12 @@
-name: Build and Test .NET 8 Console Application
+name: Build, Test and Create Release Package for .NET 8 Console Application
 
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -29,3 +29,23 @@ jobs:
 
     - name: Run tests
       run: dotnet test --configuration Release --no-build
+
+    - name: Create release package (ZIP)
+      if: success()  # Only create the package if all tests passed
+      run: |
+        # Set the version from the latest Git tag, or fallback to "1.0.0"
+        VERSION=$(git describe --tags --abbrev=0 || echo "1.0.0")
+
+        # Publish the app to the 'publish' folder
+        dotnet publish --configuration Release --output ./publish
+
+        # Create a ZIP file with the release version
+        zip -r SimpleBank-${VERSION}.zip ./publish
+
+    - name: Upload release artifact
+      if: success()  # Only upload if the package is created
+      uses: actions/upload-artifact@v2
+      with:
+        name: SimpleBank-Release
+        path: SimpleBank-${{ steps.create-release-package.outputs.VERSION }}.zip
+
