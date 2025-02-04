@@ -1,0 +1,47 @@
+name: Build, Test and Create Release Package for .NET 8 Console Application
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3  # Ensure you are using the latest v3 of checkout
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v3  # Ensure you are using the latest v3 of setup-dotnet
+      with:
+        dotnet-version: '8.0'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build project (with warnings suppressed)
+      run: dotnet build --configuration Release
+
+    - name: Run tests
+      run: dotnet test --configuration Release --no-build
+
+    - name: Create release package (ZIP)
+      if: success()  # Only create the package if all tests passed
+      run: |       
+        # Publish the app to the 'publish' folder
+        dotnet publish --configuration Release --output ./publish
+
+        # Create a ZIP file with the release version
+        zip -r SimpleBank-v1.zip ./publish
+
+    - name: Upload release artifact
+      if: success()  # Only upload if the package is created
+      uses: actions/upload-artifact@v4  # Updated to v4
+      with:
+        name: SimpleBank-Release
+        path: SimpleBank-v1.zip
