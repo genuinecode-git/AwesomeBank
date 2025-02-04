@@ -1,4 +1,4 @@
-name: Build, Test and Create Release Package for .NET 8 Console Application
+name: Build
 
 on:
   push:
