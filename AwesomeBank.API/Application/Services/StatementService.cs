@@ -54,6 +54,8 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
         List<InterestRuleViewModel> interestRules = this._interestRulesQueries.GetAllInterstRules()
             .Where(x => x.Date <= dateEnd)
             .OrderBy(r => r.Date)
+            .GroupBy(r => r.Date)
+            .Select(g => g.OrderByDescending(r => r.CreatedDate).First())
             .ToList()
             .FillEndDates();
 
@@ -68,6 +70,7 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
         decimal balance = account.Transactions
             .Where(x => x.Date.Date < dateStart)
             .Sum(s => s.Type.Equals(TransactionType.Withdrawal, StringComparison.OrdinalIgnoreCase) ? -s.Amount : s.Amount);
+
         this._logger.LogDebug("Initial balance before interest calculation: {Balance}.", balance);
 
         List<StatementEntryRecordModel> records =[new(dateStart, balance, 0m)];

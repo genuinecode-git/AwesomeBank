@@ -8,6 +8,8 @@ namespace AwesomeBank.API.Application.Models.ViewModels
         public DateTime Date { get;  set; }
         [JsonIgnore]
         public DateTime? EndDate { get;  set; }
+        [JsonIgnore]
+        public DateTime CreatedDate { get;  set; }
         public decimal Rate { get;  set; }
     }
 }

@@ -9,42 +9,37 @@ public class TransactionService(IMediator mediator, ILogger<TransactionService> 
     {
         System.Console.WriteLine("Please enter transaction details in <Date> <Account> <Type> <Amount> format (or enter blank to go back):");
 
-        while (true)
+        System.Console.Write("> ");
+        string input = System.Console.ReadLine()?.Trim();
+
+        if (string.IsNullOrEmpty(input)) return;  // Exit if input is blank
+
+        string[] parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        if (parts.Length != 4 || !ValidateTransaction(parts, out var date, out var account, out var type, out var amount))
         {
-            System.Console.Write("> ");
-            string input = System.Console.ReadLine()?.Trim();
-
-            if (string.IsNullOrEmpty(input)) break;
-
-            string[] parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-
-            if (parts.Length != 4 || !ValidateTransaction(parts, out var date, out var account, out var type, out var amount))
-            {
-                continue;
-            }
-
-            try
-            {
-                var results = await _mediator.Send(new AddTransactionCommand(account, date, type, amount));
-
-                if (results != null)
-                {
-                    DisplayTransactions(results);
-                }
-                return;
-
-            }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine(ex.Message);
-                _logger.LogError("Exception Occurs : {exception}", ex.Message);
-
-            }
-
-            System.Console.WriteLine("\nIs there anything else you'd like to do?");
-            break;
+            System.Console.WriteLine("Invalid input format.");
+            return;  // Return if the input is invalid
         }
+
+        try
+        {
+            var results = await _mediator.Send(new AddTransactionCommand(account, date, type, amount));
+
+            if (results != null)
+            {
+                DisplayTransactions(results);
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Console.WriteLine(ex.Message);
+            _logger.LogError("Exception Occurs: {exception}", ex.Message);
+        }
+
+        System.Console.WriteLine("\nIs there anything else you'd like to do?");
     }
+
 
     private bool ValidateTransaction(string[] parts, out DateTime date, out string account, out string type, out decimal amount)
     {

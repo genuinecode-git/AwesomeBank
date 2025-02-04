@@ -9,6 +9,7 @@ namespace AwesomeBank.Domain.Entities
             this.RuleId= ruleId;
             this.Date= date;
             this.Rate= rate;
+            this.CreatedDate=DateTime.UtcNow;
         }
 
         private void Validate(string ruleId, DateTime date, decimal rate)
