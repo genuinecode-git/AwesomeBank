@@ -2,10 +2,9 @@
 
 namespace AwesomeBank.Console.Services;
 
-public class StatementService(IStatementService statementService, ILogger<StatementService> logger)
+public class StatementService(IStatementService statementService)
 {
     private IStatementService _statementService  = statementService;
-    private ILogger<StatementService> _logger  = logger;
     public async Task PrintStatementAsync()
     {
         System.Console.WriteLine("Please enter account and month to generate the statement <Account> <Year><Month>");

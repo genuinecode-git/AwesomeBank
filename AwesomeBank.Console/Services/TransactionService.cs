@@ -2,10 +2,9 @@
 
 namespace AwesomeBank.Console.Services;
 
-public class TransactionService(CommandHandleHelper commandHandle, ILogger<TransactionService> logger)
+public class TransactionService(CommandHandleHelper commandHandle)
 {
     private readonly CommandHandleHelper _commandHandle = commandHandle;
-    private readonly ILogger<TransactionService> _logger = logger;
 
     public async Task InputTransactionsAsync()
     {

@@ -2,10 +2,9 @@
 
 namespace AwesomeBank.Console.Services;
 
-public class InterestRuleService(CommandHandleHelper commandHandle, ILogger<InterestRuleService> logger)
+public class InterestRuleService(CommandHandleHelper commandHandle)
 {
     private readonly CommandHandleHelper _commandHandle = commandHandle;
-    private readonly ILogger<InterestRuleService> _logger = logger;
     public async Task DefineInterestRulesAsync()
     {
         System.Console.WriteLine("Please enter interest rules details in <Date> <RuleId> <Rate in %> format (or enter blank to go back):");
