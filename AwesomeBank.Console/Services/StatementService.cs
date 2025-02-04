@@ -63,10 +63,18 @@ public class StatementService(IStatementService statementService, ILogger<Statem
     private void DisplayStatement(AccountStatementModel statement)
     {
         System.Console.WriteLine($"\nAccount: {statement.AccountNumber}");
+       
         System.Console.WriteLine("| Date     | Txn Id      | Type | Amount  | Balance  |");
+        if (statement.Entries.Count == 0)
+        {
+            System.Console.WriteLine("No Records for Display for the month.");
+        }
+
         foreach (var txn in statement.Entries)
         {
-            System.Console.WriteLine($"| {txn.Date:yyyyMMdd} | {txn.TransactionId,-10} | {txn.Type,-4} | {txn.Amount,7:F2} | {txn.Balance,8:F2} |");
+            string txnIdDisplay = string.IsNullOrEmpty(txn.TransactionId) ? "           " : txn.TransactionId.PadRight(10);
+
+            System.Console.WriteLine($"| {txn.Date:yyyyMMdd} | {txnIdDisplay} | {txn.Type,-4} | {txn.Amount,7:F2} | {txn.Balance,8:F2} |");
         }
         
     }

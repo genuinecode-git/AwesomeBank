@@ -83,7 +83,6 @@ public class AwsomeBankApplication(
 
     private async Task DisplayIntermedMenu()
     {
-
         System.Console.WriteLine("\nIs there anything else you'd like to do?");
         await DisplayMenu();
     }

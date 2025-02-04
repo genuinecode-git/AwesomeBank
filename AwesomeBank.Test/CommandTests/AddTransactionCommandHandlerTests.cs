@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace AwesomeBank.CommandTests.Test;
+﻿namespace AwesomeBank.CommandTests.Test;
 
 [TestFixture]
 public class AddTransactionCommandHandlerTests
@@ -122,6 +120,6 @@ public class AddTransactionCommandHandlerTests
 
         // Act & Assert
         var ex = Assert.ThrowsAsync<FluentValidation.ValidationException>(() => _handler.Handle(command, CancellationToken.None));
-        Assert.That(ex.Message, Does.Contain("AC001 do not have enouch balance (20)$ to withdraw."));
+        Assert.That(ex.Message, Does.Contain("AC001 do not have enouch balance to withdraw.(current balance : 20$)"));
     }
 }

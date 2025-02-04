@@ -9,7 +9,6 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
     private readonly IAccountQueries _accountQueries = accountQueries;
     private readonly IInterestRulesQueries _interestRulesQueries = interestRulesQueries;
     private readonly ILogger<StatementService> _logger = logger;
-
     public AccountStatementModel GetStatement(StatementRequest request)
     {
         var account = _accountQueries.GetAccount(request.AccountNumber);
@@ -20,21 +19,36 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
             return null;
         }
 
+        int yearInt = int.Parse(request.Year);
+        int monthInt = int.Parse(request.Month);
 
-        decimal balance = 0;
+        // Start and end date for the month
+        DateTime dateStart = new DateTime(yearInt, monthInt, 1).Date;
+        DateTime dateEnd = dateStart.GetLastDayOfMonth();
+
+        // Calculate the balance before interest
+        decimal balance = account.Transactions
+            .Where(x => x.Date.Date < dateStart)
+            .Sum(s => s.Type.Equals(TransactionType.Withdrawal, StringComparison.OrdinalIgnoreCase) ? -s.Amount : s.Amount);
+
+        // Calculate the interest for the period
+        decimal interest = CalculateInterest_Optimized(account, dateStart, dateEnd, balance);
+
+        // Filter transactions once for the given date range
+        var transactionsInRange = account.Transactions
+            .Where(x => x.Date >= dateStart && x.Date <= dateEnd)
+            .OrderBy(x => x.Date) 
+            .ToList();
+
         var statementEntries = new List<StatementEntryModel>();
 
-        foreach (var transaction in account.Transactions)
+        // Process each transaction and calculate the balance for the statement
+        foreach (var transaction in transactionsInRange)
         {
             this._logger.LogDebug("Statement balance calculating for : {Transaction}", transaction.TransactionId);
             balance += transaction.Type.Equals(TransactionType.Withdrawal, StringComparison.CurrentCultureIgnoreCase) ? -transaction.Amount : transaction.Amount;
             statementEntries.Add(new StatementEntryModel(transaction.Date, transaction.TransactionId, transaction.Type, transaction.Amount, balance));
         }
-
-        int yearInt = int.Parse(request.Year);
-        int monthInt = int.Parse(request.Month);
-
-        decimal interest = CalculateInterest_Optimized(account, yearInt, monthInt);
 
         if (interest > 0)
         {
@@ -42,23 +56,20 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
             statementEntries.Add(new StatementEntryModel(new DateTime(yearInt, monthInt, DateTime.DaysInMonth(yearInt, monthInt)), "", TransactionType.Interst, interest, balance));
         }
 
-        return new AccountStatementModel(account.AccountNumber, [..statementEntries.Where(x=>x.Date >= new DateTime(yearInt, monthInt, 1).Date)]);
+        return new AccountStatementModel(account.AccountNumber, statementEntries);
     }
 
-    private decimal CalculateInterest_Optimized(AccountViewModel account, int year, int month)
+    private decimal CalculateInterest_Optimized(AccountViewModel account, DateTime dateStart, DateTime dateEnd, decimal balance)
     {
-        this._logger.LogInformation("Starting interest calculation for account {AccountId} for {Year}-{Month}.", account.AccountNumber, year, month);
-        DateTime dateStart = new DateTime(year, month, 1).Date;
-        DateTime dateEnd = dateStart.GetLastDayOfMonth();
+        this._logger.LogInformation("Starting interest calculation for account {AccountId} for {Year}-{Month}.", account.AccountNumber, dateStart.Year, dateStart.Month);
         this._logger.LogDebug("Date range for calculation: {DateStart} to {DateEnd}.", dateStart, dateEnd);
 
-        List<InterestRuleViewModel> interestRules = this._interestRulesQueries.GetAllInterstRules()
-            .Where(x => x.Date <= dateEnd)
+        List<InterestRuleViewModel> interestRules = [.. this._interestRulesQueries.GetAllInterstRules()
+            .Where(x => x.Date <= dateEnd) 
             .OrderBy(r => r.Date)
             .GroupBy(r => r.Date)
             .Select(g => g.OrderByDescending(r => r.CreatedDate).First())
-            .ToList()
-            .FillEndDates();
+            .FillEndDates()];
 
         if (interestRules.Count == 0)
         {
@@ -68,16 +79,14 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
 
         this._logger.LogDebug("Retrieved {InterestRuleCount} interest rules.", interestRules.Count);
 
-        decimal balance = account.Transactions
-            .Where(x => x.Date.Date < dateStart)
-            .Sum(s => s.Type.Equals(TransactionType.Withdrawal, StringComparison.OrdinalIgnoreCase) ? -s.Amount : s.Amount);
-
         this._logger.LogDebug("Initial balance before interest calculation: {Balance}.", balance);
 
-        List<StatementEntryRecordModel> records =[new(dateStart, balance, 0m)];
+        // Initialize the record with the starting balance
+        List<StatementEntryRecordModel> records = new List<StatementEntryRecordModel> { new(dateStart, balance, 0m) };
         this._logger.LogDebug("Initial record added with balance: {Balance}.", balance);
 
-        List<TransactionViewModel> dailyBalances = [.. account.Transactions
+        // Filter daily transactions within the date range, grouped by date
+        List<TransactionViewModel> dailyBalances = account.Transactions
             .Where(x => x.Date >= dateStart && x.Date <= dateEnd)
             .GroupBy(x => x.Date.Date)
             .Select(g => new TransactionViewModel
@@ -86,23 +95,32 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
                 Amount = g.Sum(t => t.Type.Equals(TransactionType.Deposit, StringComparison.OrdinalIgnoreCase) ? t.Amount : -t.Amount),
                 Type = TransactionType.Deposit
             })
-            .OrderBy(x => x.Date)];
+            .OrderBy(x => x.Date)
+            .ToList();
 
         this._logger.LogDebug("Processed {DailyBalanceCount} daily balances.", dailyBalances.Count);
+
+        DateTime finalEndDate = dateEnd;
 
         foreach (var transaction in dailyBalances)
         {
             balance += transaction.Type.Equals(TransactionType.Withdrawal, StringComparison.OrdinalIgnoreCase) ? -transaction.Amount : transaction.Amount;
             this._logger.LogDebug("Updated balance after transaction on {TransactionDate}: {Balance}.", transaction.Date, balance);
 
-            List<InterestRuleViewModel> rulesToApply = [.. interestRules.Where(x => x.EndDate.Value.Date > transaction.Date.Date).OrderBy(o => o.Date)];
+            // Filter rules that apply for the current transaction's date
+            List<InterestRuleViewModel> rulesToApply = interestRules
+                .Where(x => x.EndDate.Value.Date > transaction.Date.Date)
+                .OrderBy(o => o.Date)
+                .ToList();
+
             DateTime nextItemDate = dailyBalances.FirstOrDefault(t => t.Date > transaction.Date)?.Date.AddDays(-1) ?? DateTime.MaxValue;
             bool isLastRecord = nextItemDate == DateTime.MaxValue;
             this._logger.LogDebug("Applying {RuleCount} interest rules for transaction on {TransactionDate}.", rulesToApply.Count, transaction.Date);
 
             foreach (var rule in rulesToApply)
             {
-                int numberOfDays = CalculateNumberOfDays(rule, transaction.Date, nextItemDate, isLastRecord, dateEnd);
+                // Precompute the number of days for the rule to apply
+                int numberOfDays = CalculateNumberOfDays(rule, transaction.Date, nextItemDate, isLastRecord, finalEndDate);
                 decimal interest = balance * rule.Rate * numberOfDays / 100;
                 records.Add(new StatementEntryRecordModel(transaction.Date.Date, balance, interest));
                 this._logger.LogDebug("Applied interest rule {RuleId} for {NumberOfDays} days. Interest calculated: {Interest}.", rule.RuleId, numberOfDays, interest);
@@ -114,25 +132,21 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
 
     private int CalculateNumberOfDays(InterestRuleViewModel rule, DateTime transactionDate, DateTime nextItemDate, bool isLastRecord, DateTime dateEnd)
     {
-        if (rule.Date.Date >= transactionDate.Date && nextItemDate <= rule.EndDate.Value.Date)
+        DateTime endDate = rule.EndDate > dateEnd ? dateEnd : rule.EndDate.Value;
+        DateTime ruleStartDate = rule.Date.Date >= transactionDate.Date ? rule.Date.Date : transactionDate.Date;
+
+        if (nextItemDate <= endDate)
         {
-            return (nextItemDate - rule.Date.Date).Days + 1;
+            return (nextItemDate - ruleStartDate).Days + 1;
         }
-        if (rule.Date.Date >= transactionDate.Date && nextItemDate > rule.EndDate.Value.Date)
+
+        if (nextItemDate > endDate)
         {
-            return (rule.EndDate.Value.Date - rule.Date.Date).Days + 1;
+            return (endDate - ruleStartDate).Days + 1;
         }
-        if (rule.Date.Date < transactionDate.Date && nextItemDate <= rule.EndDate.Value.Date)
-        {
-            return (nextItemDate - transactionDate.Date).Days + 1;
-        }
-        if (rule.Date.Date < transactionDate.Date && nextItemDate > rule.EndDate.Value.Date)
-        {
-            return ((isLastRecord ? dateEnd : rule.EndDate.Value.Date) - transactionDate.Date).Days + 1;
-        }
+
         return 0;
     }
-
 
     private decimal CalculateInterest_Initial(AccountViewModel account, int year, int month)
     {
