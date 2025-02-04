@@ -15,6 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwesomeBank.Domain", "Aweso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwesomeBank.Infrastructure", "AwesomeBank.Infrastructure\AwesomeBank.Infrastructure.csproj", "{B98438A6-FBA7-478C-B9FD-C968034C5FAF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task", "Task", "{CF07BBA7-B656-44DF-85ED-8077344F0007}"
+	ProjectSection(SolutionItems) = preProject
+		BankAccountQ.md = BankAccountQ.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
