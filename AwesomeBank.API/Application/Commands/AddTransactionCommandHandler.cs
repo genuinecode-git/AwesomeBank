@@ -30,7 +30,7 @@ namespace AwesomeBank.API.Application.Commands
                 if (balance< request.Amount)
                 {
                     _logger.LogDebug("[Processing] {AccountNumber} do not have enouch balance ({Balance}) to withdraw.", request.AccountNumber,balance);
-                    throw new ValidationException($"{request.AccountNumber} do not have enouch balance ({balance})$ to withdraw.");
+                    throw new ValidationException($"{request.AccountNumber} do not have enouch balance to withdraw.(current balance : {balance}$)");
                 }
             }
 

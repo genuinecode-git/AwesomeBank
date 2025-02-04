@@ -8,6 +8,12 @@
             return value == Math.Round(value, precision);
         }
 
+        public static bool IsValidNumber(string value)
+        {
+            // Check if the decimal value has more than two decimal places
+            return int.TryParse(value,out int number);
+        }
+
         public static bool IsValidDate(DateTime date)
         {
             // Ensure the date is not the default date (DateTime.MinValue) or the maximum date (DateTime.MaxValue)

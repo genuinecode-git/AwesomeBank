@@ -1,8 +1,10 @@
-﻿namespace AwesomeBank.Console.Services;
+﻿
 
-public class InterestRuleService(IMediator mediator, ILogger<InterestRuleService> logger)
+namespace AwesomeBank.Console.Services;
+
+public class InterestRuleService(CommandHandleHelper commandHandle, ILogger<InterestRuleService> logger)
 {
-    private readonly IMediator _mediator = mediator;
+    private readonly CommandHandleHelper _commandHandle = commandHandle;
     private readonly ILogger<InterestRuleService> _logger = logger;
     public async Task DefineInterestRulesAsync()
     {
@@ -22,21 +24,18 @@ public class InterestRuleService(IMediator mediator, ILogger<InterestRuleService
                 continue;
             }
 
-            try
-            {
-                var results = await _mediator.Send(new AddInterestRuleCommand(date, ruleId, rate));
+            var command = new AddInterestRuleCommand(date, ruleId, rate);
+            var validator = new AddInterestRuleCommandValidator();
 
-                if (results != null)
-                {
-                    DisplayInterestRules(results);
-                }
-                return;
-            }
-            catch (Exception ex)
+            var results = await _commandHandle.HandleCommandAsync<AddInterestRuleCommand,
+                AddInterestRuleCommandValidator,
+                IEnumerable<InterestRuleViewModel>>(command, validator);
+
+            if (results != null)
             {
-                System.Console.WriteLine(ex.Message);
-                _logger.LogError("Exception Occurs : {exception}", ex.Message);
+                DisplayInterestRules(results);
             }
+            return;
         }
     }
 
@@ -52,9 +51,9 @@ public class InterestRuleService(IMediator mediator, ILogger<InterestRuleService
             return false;
         }
 
-        if (!decimal.TryParse(parts[2], out rate) || rate <= 0 || rate >= 100)
+        if (!decimal.TryParse(parts[2], out rate))
         {
-            System.Console.WriteLine("Invalid rate. It must be greater than 0 and less than 100.");
+            System.Console.WriteLine("Invalid rate. It must be number or decimal (ex: 1.01).");
             return false;
         }
 

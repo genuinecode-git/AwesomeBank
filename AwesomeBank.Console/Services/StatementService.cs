@@ -2,8 +2,10 @@
 
 namespace AwesomeBank.Console.Services;
 
-public class StatementService(IStatementService statementService)
+public class StatementService(IStatementService statementService, ILogger<StatementService> logger)
 {
+    private IStatementService _statementService  = statementService;
+    private ILogger<StatementService> _logger  = logger;
     public async Task PrintStatementAsync()
     {
         System.Console.WriteLine("Please enter account and month to generate the statement <Account> <Year><Month>");
@@ -26,15 +28,36 @@ public class StatementService(IStatementService statementService)
             Month = parts[1].Substring(4, 2),
             Year = parts[1].Substring(0, 4)
         };
-        var statement = statementService.GetStatement(request);
 
-        if (statement == null)
+        var validator = new StatementRequestValidator();
+        ValidationResult result = await validator.ValidateAsync(request);
+
+        if (result.IsValid)
         {
-            System.Console.WriteLine($"No transactions found for account {request.AccountNumber} in {request.Year}-{request.Month}.");
+                var statement = _statementService.GetStatement(request);
+
+                if (statement == null)
+                {
+                    System.Console.WriteLine($"No transactions found for account {request.AccountNumber} in {request.Year}-{request.Month}.");
+                    return;
+                }
+
+                DisplayStatement(statement);
+           
+
+        }
+        else
+        {
+            System.Console.WriteLine("\nValidation failed:");
+
+            foreach (var failure in result.Errors)
+            {
+                System.Console.WriteLine($"Property: {failure.PropertyName}, Error: {failure.ErrorMessage}");
+            }
+            System.Console.WriteLine("\n");
             return;
         }
 
-        DisplayStatement(statement);
     }
 
     private void DisplayStatement(AccountStatementModel statement)
@@ -45,7 +68,7 @@ public class StatementService(IStatementService statementService)
         {
             System.Console.WriteLine($"| {txn.Date:yyyyMMdd} | {txn.TransactionId,-10} | {txn.Type,-4} | {txn.Amount,7:F2} | {txn.Balance,8:F2} |");
         }
-        System.Console.WriteLine("\nIs there anything else you'd like to do?");
+        
     }
 }
 

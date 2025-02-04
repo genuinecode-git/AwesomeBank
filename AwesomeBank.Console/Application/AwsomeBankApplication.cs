@@ -20,19 +20,71 @@ public class AwsomeBankApplication(
 
     protected override async Task HandleTransactions()
     {
-        await _transactionService.InputTransactionsAsync();
-        await DisplayMenu(); 
+        try
+        {
+            await _transactionService.InputTransactionsAsync();
+        }
+        catch (ArgumentException ex)
+        {
+            System.Console.WriteLine($"\nError Occurs: {ex.Message}");
+            _logger.LogWarning("\nException Occurs : {exception}", ex.Message);
+        }
+        catch (ValidationException ex)
+        {
+            System.Console.WriteLine($"\nSystem Unable to process this record: {ex.Message}");
+            _logger.LogWarning("\nException Occurs : {exception}", ex.Message);
+        }
+        catch (Exception ex)
+        {
+            System.Console.WriteLine("[ERROR] System is unable to Process request. Please contact system administrator.\n");
+            _logger.LogError("\nException Occurs : {exception}", ex.Message);
+        }
+        await DisplayIntermedMenu();
     }
 
     protected override async Task HandleInterestRules()
     {
-        await _interestRuleService.DefineInterestRulesAsync();
-        await DisplayMenu(); 
+        try
+        {
+            await _interestRuleService.DefineInterestRulesAsync();
+        }
+        catch (ArgumentException ex)
+        {
+            System.Console.WriteLine($"\nError Occurs: {ex.Message}");
+            _logger.LogWarning("\nException Occurs : {exception}", ex.Message);
+        }
+        catch (Exception ex)
+        {
+            System.Console.WriteLine("[ERROR] System is unable to Process request. Please contact system administrator.\n");
+            _logger.LogError("\nException Occurs : {exception}", ex.Message);
+        }
+        await DisplayIntermedMenu();
+
     }
 
     protected override async Task HandlePrintStatement()
     {
-        await _statementService.PrintStatementAsync();
-        await DisplayMenu(); 
+        try
+        {
+            await _statementService.PrintStatementAsync();
+        }
+        catch (ArgumentException ex)
+        {
+            System.Console.WriteLine($"\nError Occurs: {ex.Message}");
+            _logger.LogWarning("\nException Occurs : {exception}", ex.Message);
+        }
+        catch (Exception ex)
+        {
+            System.Console.WriteLine("[ERROR] System is unable to Process request. Please contact system administrator.\n");
+            _logger.LogError("\nException Occurs : {exception}", ex.Message);
+        }
+        await DisplayIntermedMenu();
+    }
+
+    private async Task DisplayIntermedMenu()
+    {
+
+        System.Console.WriteLine("\nIs there anything else you'd like to do?");
+        await DisplayMenu();
     }
 }

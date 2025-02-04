@@ -2,6 +2,7 @@
 
 using AwesomeBank.API.Application.Mappings;
 using AwesomeBank.API.Application.Queries;
+using AwesomeBank.Console.Helpers;
 using AwesomeBank.Console.Services;
 using AwesomeBank.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,8 +42,9 @@ var host = Host.CreateDefaultBuilder()
         services.AddSingleton<IInterestRulesQueries, InterestRulesQueries>();
         services.AddSingleton<IStatementService, AwesomeBank.API.Application.Services.StatementService>();
         services.AddSingleton<AwesomeBank.Console.Services.StatementService>();
-        services.AddSingleton<TransactionService>();
+        services.AddSingleton<TransactionService>(); 
         services.AddSingleton<InterestRuleService>();
+        services.AddSingleton<CommandHandleHelper>();
 
 
         services.AddSingleton<IConsoleApplication, AwsomeBankApplication>();

@@ -1,8 +1,10 @@
-﻿namespace AwesomeBank.Console.Services;
+﻿
 
-public class TransactionService(IMediator mediator, ILogger<TransactionService> logger)
+namespace AwesomeBank.Console.Services;
+
+public class TransactionService(CommandHandleHelper commandHandle, ILogger<TransactionService> logger)
 {
-    private readonly IMediator _mediator = mediator;
+    private readonly CommandHandleHelper _commandHandle = commandHandle;
     private readonly ILogger<TransactionService> _logger = logger;
 
     public async Task InputTransactionsAsync()
@@ -21,23 +23,17 @@ public class TransactionService(IMediator mediator, ILogger<TransactionService> 
             System.Console.WriteLine("Invalid input format.");
             return;  // Return if the input is invalid
         }
+        var command = new AddTransactionCommand(account, date, type, amount);
+        var validator = new AddTransactionCommandValidator();
 
-        try
+        var results = await _commandHandle.HandleCommandAsync<AddTransactionCommand,
+            AddTransactionCommandValidator,
+            AccountViewModel>(command, validator);
+
+        if (results != null)
         {
-            var results = await _mediator.Send(new AddTransactionCommand(account, date, type, amount));
-
-            if (results != null)
-            {
-                DisplayTransactions(results);
-            }
+            DisplayTransactions(results);
         }
-        catch (Exception ex)
-        {
-            System.Console.WriteLine(ex.Message);
-            _logger.LogError("Exception Occurs: {exception}", ex.Message);
-        }
-
-        System.Console.WriteLine("\nIs there anything else you'd like to do?");
     }
 
 
@@ -54,15 +50,9 @@ public class TransactionService(IMediator mediator, ILogger<TransactionService> 
             return false;
         }
 
-        if (type != TransactionType.Deposit && type != TransactionType.Withdrawal)
+        if (!decimal.TryParse(parts[3], out amount))
         {
-            System.Console.WriteLine("Invalid type. Use D for deposit or W for withdrawal.");
-            return false;
-        }
-
-        if (!decimal.TryParse(parts[3], out amount) || amount <= 0 || decimal.Round(amount, 2) != amount)
-        {
-            System.Console.WriteLine("Invalid amount. Must be greater than 0 with up to 2 decimal places.");
+            System.Console.WriteLine("Invalid amount. Must be number or decimal.");
             return false;
         }
 
@@ -77,6 +67,5 @@ public class TransactionService(IMediator mediator, ILogger<TransactionService> 
         {
             System.Console.WriteLine($"| {txn.Date,-8:yyyyMMdd} | {txn.TransactionId,-15} | {txn.Type,-4} | {txn.Amount,8:F2} |");
         }
-        System.Console.WriteLine("\nIs there anything else you'd like to do?");
     }
 }
