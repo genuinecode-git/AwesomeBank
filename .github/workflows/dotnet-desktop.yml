@@ -27,7 +27,7 @@ jobs:
     - name: Build the Console project (AwesomeBank.Console)
       run: dotnet build ./AwesomeBank.Console.csproj --configuration Release
 
-    - name: Run tests
+    - name: Run tests (optional step for your scenario)
       run: dotnet test --configuration Release --no-build
       
     - name: Create release package (ZIP) for AwesomeBank.Console
@@ -41,4 +41,4 @@ jobs:
       uses: actions/upload-artifact@v4  # Updated to v4
       with:
         name: SimpleBank-Release
-        path: SimpleBank-v1.zip
+        path: ./SimpleBank-v1.zip  # Path to the generated ZIP file
