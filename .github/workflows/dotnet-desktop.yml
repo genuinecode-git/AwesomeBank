@@ -25,7 +25,7 @@ jobs:
       run: dotnet restore
 
     - name: Build project (with warnings suppressed)
-      run: dotnet build --configuration Release --no-warn  # Suppress warnings
+      run: dotnet build --configuration Release -nowarn  # Corrected to -nowarn instead of --no-warn
 
     - name: Run tests
       run: dotnet test --configuration Release --no-build
