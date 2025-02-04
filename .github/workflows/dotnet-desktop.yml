@@ -23,17 +23,20 @@ jobs:
 
     - name: Restore dependencies
       run: dotnet restore
-      
+
     - name: Build the Console project (AwesomeBank.Console)
       run: dotnet build ./AwesomeBank.Console/AwesomeBank.Console.csproj --configuration Release
 
-    - name: Run tests (optional step for your scenario)
-      run: dotnet test --configuration Release --no-build
-      
+    - name: Build the Test project (AwesomeBank.Test) before running tests
+      run: dotnet build ./AwesomeBank.Test/AwesomeBank.Test.csproj --configuration Release  # Explicitly build the test project
+
+    - name: Run tests (with the correct test DLL)
+      run: dotnet test ./AwesomeBank.Test/AwesomeBank.Test.csproj --configuration Release --no-build  # Explicitly run tests for the test project
+
     - name: Create release package (ZIP) for AwesomeBank.Console
       if: success() 
       run: |        
-        dotnet publish ./AwesomeBank.Console/AwesomeBank.Console.csprojj --configuration Release --output ./publish
+        dotnet publish ./AwesomeBank.Console/AwesomeBank.Console.csproj --configuration Release --output ./publish
         zip -r SimpleBank-v1.zip ./publish  # Create the ZIP for only this project
 
     - name: Upload release artifact
