@@ -1,4 +1,6 @@
-﻿namespace AwesomeBank.Console.Services;
+﻿using AwesomeBank.API.Application.Models.Requests;
+
+namespace AwesomeBank.Console.Services;
 
 public class StatementService(IStatementService statementService)
 {
@@ -18,15 +20,17 @@ public class StatementService(IStatementService statementService)
             return;
         }
 
-        string accountNumber = parts[0];
-        string year = parts[1].Substring(0, 4);
-        string month = parts[1].Substring(4, 2);
-
-        var statement = statementService.GetStatement(accountNumber, year, month);
+        StatementRequest request = new()
+        {
+            AccountNumber = parts[0],
+            Month = parts[1].Substring(4, 2),
+            Year = parts[1].Substring(0, 4)
+        };
+        var statement = statementService.GetStatement(request);
 
         if (statement == null)
         {
-            System.Console.WriteLine($"No transactions found for account {accountNumber} in {year}-{month}.");
+            System.Console.WriteLine($"No transactions found for account {request.AccountNumber} in {request.Year}-{request.Month}.");
             return;
         }
 

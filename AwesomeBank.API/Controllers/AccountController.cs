@@ -1,4 +1,5 @@
-﻿using AwesomeBank.API.Application.Queries;
+﻿using AwesomeBank.API.Application.Models.Requests;
+using AwesomeBank.API.Application.Queries;
 using AwesomeBank.API.Application.Services;
 
 namespace AwesomeBank.API.Controllers;
@@ -28,11 +29,11 @@ public class AccountController(IMediator mediator, ILogger<AccountController> lo
         return Ok(this._accountQueries.GetAccountReportForMonth(accountNumber, $"{year}{month}"));
     }
 
-    [HttpGet("{accountNumber}/GetStatement/{year}/{month}")]
-    public IActionResult GetStatement(string accountNumber, string year, string month)
+    [HttpGet("{AccountNumber}/GetStatement/{Year}/{Month}")]
+    public IActionResult GetStatement(StatementRequest request)
     {
-        _logger.LogInformation("Received request to get statement for account {AccountNumber}- {Year}-{Month}", accountNumber, year,month);
+        _logger.LogInformation("Received request to get statement for account {AccountNumber}- {Year}-{Month}", request.AccountNumber, request.Year, request.Month);
 
-        return Ok(this._statementService.GetStatement(accountNumber,year,month));
+        return Ok(this._statementService.GetStatement(request));
     }
 }

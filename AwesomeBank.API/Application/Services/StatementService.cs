@@ -1,4 +1,5 @@
-﻿using AwesomeBank.API.Application.Queries;
+﻿using AwesomeBank.API.Application.Models.Requests;
+using AwesomeBank.API.Application.Queries;
 using System.Data;
 
 namespace AwesomeBank.API.Application.Services;
@@ -9,13 +10,13 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
     private readonly IInterestRulesQueries _interestRulesQueries = interestRulesQueries;
     private readonly ILogger<StatementService> _logger = logger;
 
-    public AccountStatementModel GetStatement(string accountNumber, string year, string month)
+    public AccountStatementModel GetStatement(StatementRequest request)
     {
-        var account = _accountQueries.GetAccount(accountNumber);
+        var account = _accountQueries.GetAccount(request.AccountNumber);
 
         if (account == null)
         {
-            this._logger.LogWarning("Account {AccountNumber} not found.", accountNumber);
+            this._logger.LogWarning("Account {AccountNumber} not found.", request.AccountNumber);
             return null;
         }
 
@@ -30,8 +31,8 @@ public class StatementService(IAccountQueries accountQueries, IInterestRulesQuer
             statementEntries.Add(new StatementEntryModel(transaction.Date, transaction.TransactionId, transaction.Type, transaction.Amount, balance));
         }
 
-        int yearInt = int.Parse(year);
-        int monthInt = int.Parse(month);
+        int yearInt = int.Parse(request.Year);
+        int monthInt = int.Parse(request.Month);
 
         decimal interest = CalculateInterest_Optimized(account, yearInt, monthInt);
 

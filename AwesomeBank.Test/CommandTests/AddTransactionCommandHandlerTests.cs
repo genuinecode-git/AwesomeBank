@@ -1,4 +1,6 @@
-﻿namespace AwesomeBank.CommandTests.Test;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AwesomeBank.CommandTests.Test;
 
 [TestFixture]
 public class AddTransactionCommandHandlerTests
@@ -29,6 +31,31 @@ public class AddTransactionCommandHandlerTests
             .Returns(account);
 
         var command = new AddTransactionCommand("AC001", DateTime.UtcNow, "D", 100);
+        _mapperMock.Setup(m => m.Map<AccountViewModel>(It.IsAny<Account>())).Returns(new AccountViewModel());
+
+        // Act
+        var result = await _handler.Handle(command, CancellationToken.None);
+
+        // Assert
+        Assert.That(result, Is.Not.Null);
+
+        _unitOfWorkMock.Verify(u => u.Accounts.Update(account), Times.Once);
+    }
+
+    [Test]
+    public async Task Handle_Sucess_Command_ValidBalance()
+    {
+        // Arrange
+        var account = new Account("AC001");
+        account.AddTransaction(DateTime.UtcNow, TransactionType.Deposit, 100);
+        account.AddTransaction(DateTime.UtcNow, TransactionType.Withdrawal, 80);
+
+        _unitOfWorkMock.Setup(u => u.Accounts.FirstOrDefaultWithIncludes(
+                It.IsAny<Expression<Func<Account, bool>>>(),
+                It.IsAny<Expression<Func<Account, object>>[]>()))
+            .Returns(account);
+
+        var command = new AddTransactionCommand("AC001", DateTime.UtcNow, TransactionType.Withdrawal, 20);
         _mapperMock.Setup(m => m.Map<AccountViewModel>(It.IsAny<Account>())).Returns(new AccountViewModel());
 
         // Act
@@ -78,4 +105,23 @@ public class AddTransactionCommandHandlerTests
         Assert.That(ex.Message, Does.Contain("Transaction type must be 'D' (Deposit) or 'W' (Withdrawal)."));
     }
 
+    [Test]
+    public void Handle_Exception_Command_InvalidBalance()
+    {
+        // Arrange
+        var account = new Account("AC001");
+        account.AddTransaction(DateTime.UtcNow,TransactionType.Deposit,100);
+        account.AddTransaction(DateTime.UtcNow,TransactionType.Withdrawal,80);
+
+        _unitOfWorkMock.Setup(u => u.Accounts.FirstOrDefaultWithIncludes(
+                It.IsAny<Expression<Func<Account, bool>>>(),
+                It.IsAny<Expression<Func<Account, object>>[]>()))
+            .Returns(account);
+
+        var command = new AddTransactionCommand("AC001", DateTime.UtcNow, TransactionType.Withdrawal, 100);
+
+        // Act & Assert
+        var ex = Assert.ThrowsAsync<FluentValidation.ValidationException>(() => _handler.Handle(command, CancellationToken.None));
+        Assert.That(ex.Message, Does.Contain("AC001 do not have enouch balance (20)$ to withdraw."));
+    }
 }

@@ -1,10 +1,13 @@
-using AwesomeBank.API.Application.Mappings;
+
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllers()
+        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddTransactionCommandValidator>())
+        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddInterestRuleCommandValidator>());
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -18,7 +21,6 @@ builder.Host.UseSerilog();
 builder.Services.AddSingleton(Log.Logger); // Inject Serilog Logger
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 builder.Services.AddInfrastructure();
-
 
 var app = builder.Build();
 

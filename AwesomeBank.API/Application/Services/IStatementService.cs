@@ -1,7 +1,9 @@
-﻿namespace AwesomeBank.API.Application.Services
+﻿using AwesomeBank.API.Application.Models.Requests;
+
+namespace AwesomeBank.API.Application.Services
 {
     public interface IStatementService
     {
-        AccountStatementModel GetStatement(string accountNumber, string year, string month);
+        AccountStatementModel GetStatement(StatementRequest request);
     }
 }

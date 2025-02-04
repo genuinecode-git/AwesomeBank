@@ -22,6 +22,18 @@ namespace AwesomeBank.API.Application.Commands
                 _unitOfWork.Accounts.Add(account);
             }
 
+            if (request.Type.Equals(TransactionType.Withdrawal,StringComparison.CurrentCultureIgnoreCase))
+            {
+                _logger.LogDebug("[Processing] Checking for : {AccountNumber} have enouch balance to withdraw.", request.AccountNumber);
+
+                var balance = account.Transactions.Sum(s => s.Type.Equals(TransactionType.Withdrawal, StringComparison.OrdinalIgnoreCase) ? -s.Amount : s.Amount);
+                if (balance< request.Amount)
+                {
+                    _logger.LogDebug("[Processing] {AccountNumber} do not have enouch balance ({Balance}) to withdraw.", request.AccountNumber,balance);
+                    throw new ValidationException($"{request.AccountNumber} do not have enouch balance ({balance})$ to withdraw.");
+                }
+            }
+
             _logger.LogInformation("[Processing] Adding transaction for : {AccountNumber}", request.AccountNumber);
             string transactionId = account.AddTransaction(request.Date, request.Type, request.Amount);
             _unitOfWork.Accounts.Update(account);

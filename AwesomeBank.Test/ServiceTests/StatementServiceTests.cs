@@ -33,8 +33,15 @@ public class StatementServiceTests
             .Setup(x => x.GetAccount(It.IsAny<string>()))
             .Returns((AccountViewModel)null);
 
+        StatementRequest request = new()
+        {
+            AccountNumber = "AC001",
+            Month = "06",
+            Year = "2023"
+        };
+
         // Act
-        var result = _statementService.GetStatement("AC001", "2023", "06");
+        var result = this._statementService.GetStatement(request);
 
         // Assert
         Assert.That(result, Is.Null);
@@ -64,8 +71,15 @@ public class StatementServiceTests
                 new() { RuleId="R3" ,Date = new DateTime(2023, 6, 15), Rate = 2.20m }
             ]);
 
+        StatementRequest request = new()
+        {
+            AccountNumber = "AC001",
+            Month = "06",
+            Year = "2023"
+        };
+
         // Act
-        var result = this._statementService.GetStatement("AC001", "2023", "06");
+        var result = this._statementService.GetStatement(request);
 
         // Assert
         Assert.Multiple(() =>
@@ -103,9 +117,15 @@ public class StatementServiceTests
                 new() { RuleId="R4" ,Date = new DateTime(2023, 6, 15), Rate = 4.20m, CreatedDate=DateTime.UtcNow },
                 new() { RuleId="R5" ,Date = new DateTime(2023, 6, 15), Rate = 2.20m, CreatedDate=DateTime.UtcNow }
             ]);
+        StatementRequest request = new()
+        {
+            AccountNumber = "AC001",
+            Month = "06",
+            Year = "2023"
+        };
 
         // Act
-        var result = this._statementService.GetStatement("AC001", "2023", "06");
+        var result = this._statementService.GetStatement(request);
 
         // Assert
         Assert.Multiple(() =>
@@ -140,8 +160,15 @@ public class StatementServiceTests
                 new() { Date = new DateTime(2023, 6, 15), Rate = 2.20m }
             ]);
 
+        StatementRequest request = new()
+        {
+            AccountNumber = "AC001",
+            Month = "06",
+            Year = "2023"
+        };
+
         // Act
-        var interest = _statementService.GetStatement("AC001", "2023", "06")?.Entries.LastOrDefault()?.Amount ?? 0;
+        var interest = _statementService.GetStatement(request)?.Entries.LastOrDefault()?.Amount ?? 0;
 
         // Assert
         Assert.That(interest, Is.EqualTo(0.39m));
