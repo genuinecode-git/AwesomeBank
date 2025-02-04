@@ -8,7 +8,10 @@ Simple banking system that handles operations on bank accounts. The system shoul
 - printing account statement
 [Full Requirement](https://github.com/genuinecode-git/AwesomeBank/blob/dev/BankAccountQ.md)
 
+
 Project Build on GitHub and Workflow Configured [Build] (https://github.com/genuinecode-git/AwesomeBank/actions)
+
+[Build Artifacts] (https://github.com/genuinecode-git/AwesomeBank/releases)
 
 Project was designed on showcase the thinking pattern of the developer when new project starts on following considerations.
 - Scalability
