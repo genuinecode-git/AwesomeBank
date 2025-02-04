@@ -1,4 +1,4 @@
-name: Build, Test and Create Release Package for .NET 8 Console Application
+name: Build, Test and Create Release Package 
 
 on:
   push:
@@ -44,8 +44,7 @@ jobs:
 
     - name: Upload release artifact
       if: success()  # Only upload if the package is created
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3  # Updated to v3
       with:
         name: SimpleBank-Release
         path: SimpleBank-${{ steps.create-release-package.outputs.VERSION }}.zip
-
