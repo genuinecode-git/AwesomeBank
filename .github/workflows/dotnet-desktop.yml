@@ -32,16 +32,16 @@ jobs:
 
     - name: Create release package (ZIP)
       if: success()  # Only create the package if all tests passed
-      run: |
-        VERSION=$(git describe --tags --abbrev=0 || echo "1.0.0")
-        echo "Release version: $VERSION"  # Log version to check
+      run: |       
+        # Publish the app to the 'publish' folder
         dotnet publish --configuration Release --output ./publish
-        ls -R ./publish  # List files in the publish directory to confirm
-        zip -r SimpleBank-${VERSION}.zip ./publish  # Check if this works with correct version
+
+        # Create a ZIP file with the release version
+        zip -r SimpleBank-v1.zip ./publish
 
     - name: Upload release artifact
       if: success()  # Only upload if the package is created
       uses: actions/upload-artifact@v4  # Updated to v4
       with:
         name: SimpleBank-Release
-        path: ./SimpleBank-${VERSION}.zip  # Path to the generated ZIP file
+        path: SimpleBank-v1.zip
