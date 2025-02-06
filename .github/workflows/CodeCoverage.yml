@@ -12,7 +12,7 @@ jobs:
     steps:
     # Check out the code
     - name: Check out code
-      uses: actions/checkout@v3  # Ensure you are using the latest v3 of checkout
+      uses: actions/checkout@v4  # Ensure you are using the latest v3 of checkout
 
     # Set up .NET SDK
     - name: Set up .NET
@@ -34,13 +34,13 @@ jobs:
 
     # Set up CodeQL analysis
     - name: Set up CodeQL
-      uses: github/codeql-action/setup-codeql@v2  # Setup the CodeQL action
+      uses: github/codeql-action/setup-codeql@v3  # Setup the CodeQL action
       with:
         languages: 'csharp'  # Specify the languages to scan
 
     # Run CodeQL analysis
     - name: Run CodeQL analysis
-      uses: github/codeql-action/analyze@v2  # Run CodeQL scan
+      uses: github/codeql-action/analyze@v3  # Run CodeQL scan
       with:
         category: 'default'  # Default category for analysis
 
