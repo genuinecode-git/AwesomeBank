@@ -1,8 +1,8 @@
 ﻿namespace AwesomeBank.Console.Services;
 
-public class InterestRuleService(CommandHandleHelper commandHandle): IInterestRuleService
+public class InterestRuleService(ICommandHandleHelper commandHandle): IInterestRuleService
 {
-    private readonly CommandHandleHelper _commandHandle = commandHandle;
+    private readonly ICommandHandleHelper _commandHandle = commandHandle;
 
     public async Task DefineInterestRulesAsync()
     {

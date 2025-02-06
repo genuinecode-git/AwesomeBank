@@ -10,7 +10,7 @@ namespace AwesomeBank.API.Application.Validations
                .NotEmpty().WithMessage("Account Number is Required.");
             RuleFor(x => x.Month)
                .NotEmpty().WithMessage("Month is Required.")
-               .Length(2).WithMessage("Month must be exactly 4 digit.")
+               .Length(2).WithMessage("Month must be exactly 2 digit.")
                .Must(CommonValdations.IsValidNumber).WithMessage("Month should be numeric.");
             RuleFor(x => x.Year)
                .NotEmpty().WithMessage("Year is Required.")

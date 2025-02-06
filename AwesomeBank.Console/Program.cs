@@ -42,7 +42,7 @@ var host = Host.CreateDefaultBuilder()
         services.AddSingleton<IConsoleStatementService,AwesomeBank.Console.Services.StatementService>();
         services.AddSingleton<ITransactionService,TransactionService>();
         services.AddSingleton<IInterestRuleService,InterestRuleService>();
-        services.AddSingleton<CommandHandleHelper>();
+        services.AddSingleton<ICommandHandleHelper,CommandHandleHelper>();
 
         services.AddSingleton<IConsoleApplication, AwsomeBankApplication>();
     })

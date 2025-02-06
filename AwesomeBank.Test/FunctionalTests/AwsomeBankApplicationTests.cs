@@ -1,7 +1,5 @@
 ﻿
 using AwesomeBank.Console.Application;
-using AwesomeBank.Console.Helpers;
-using AwesomeBank.Console.Services;
 using AwesomeBank.Console.Services.Interfaces;
 using AwesomeBank.Test.FunctionalTests.ServiceMocks;
 
