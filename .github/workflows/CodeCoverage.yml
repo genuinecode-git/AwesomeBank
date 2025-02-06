@@ -3,10 +3,10 @@ name: .NET Core Code Coverage
 on:
   push:
     branches:
-      - main  # Run on push to main branch (change as needed)
+      - master  # Run on push to main branch (change as needed)
   pull_request:
     branches:
-      - main  # Run on pull request to main branch
+      - master  # Run on pull request to main branch
 
 jobs:
   build:
