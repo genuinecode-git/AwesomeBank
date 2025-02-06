@@ -18,11 +18,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Install OpenSSL and libssl-dev to fix the "No usable version of libssl was found" error
+    # Install OpenSSL and libssl-dev explicitly
     - name: Install OpenSSL and libssl-dev
       run: |
         sudo apt-get update
-        sudo apt-get install -y libssl-dev openssl
+        sudo apt-get install -y libssl1.1 libssl-dev openssl
 
     # Set up .NET SDK
     - name: Set up .NET SDK
