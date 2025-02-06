@@ -1,53 +1,46 @@
-name: Build and Test on Pull Request
+name: .NET Core Code Coverage
 
 on:
+  push:
+    branches:
+      - main  # Run on push to main branch (change as needed)
   pull_request:
     branches:
-      - master
+      - main  # Run on pull request to main branch
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: Build and Run Tests with Coverage
+    runs-on: ubuntu-latest  # Use an appropriate runner (ubuntu, windows-latest, or macos-latest)
 
     steps:
-    - name: Check out code
-      uses: actions/checkout@v4  # Ensure you are using the latest v3 of checkout
+    # Checkout code
+    - name: Checkout code
+      uses: actions/checkout@v2
 
     # Set up .NET SDK
-    - name: Set up .NET
-      uses: actions/setup-dotnet@v3  # Ensure you are using the latest v3 of setup-dotnet
+    - name: Set up .NET SDK
+      uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '8.0'
+        dotnet-version: '5.0.x'  # Adjust the .NET version as needed
 
-    # Restore dependencies for the entire project
+    # Restore dependencies
     - name: Restore dependencies
       run: dotnet restore
 
-    # Build the Console project (AwesomeBank.Console)
-    - name: Build the Console project (AwesomeBank.Console)
-      run: dotnet build ./AwesomeBank.Console/AwesomeBank.Console.csproj --configuration Release
+    # Build the project
+    - name: Build the project
+      run: dotnet build --configuration Release
 
-    # Build the Test project (AwesomeBank.Test) before running tests
-    - name: Build the Test project (AwesomeBank.Test)
-      run: dotnet build ./AwesomeBank.Test/AwesomeBank.Test.csproj --configuration Release  # Explicitly build the test project
+    # Run tests with coverage using Coverlet
+    - name: Run tests with code coverage
+      run: dotnet test --configuration Release --collect:"XPlat Code Coverage"
 
-    # Set up CodeQL analysis
-    - name: Set up CodeQL
-      uses: github/codeql-action/setup-codeql@v3  # Setup the CodeQL action
+    # Upload code coverage results to Codecov
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
       with:
-        languages: 'csharp'  # Specify the languages to scan
+        file: ./TestResults/coverage.cobertura.xml  # Path to coverage report (Codecov supports multiple formats, such as Cobertura)
+        token: ${{ secrets.CODECOV_TOKEN }}  # Add your Codecov token as a secret in GitHub settings
 
-    # Run CodeQL analysis
-    - name: Run CodeQL analysis
-      uses: github/codeql-action/analyze@v3  # Run CodeQL scan
-      with:
-        category: 'default'  # Default category for analysis
-
-    # Check if CodeQL scan succeeded, only proceed with tests if successful
-    - name: Check CodeQL results
-      if: failure()  # If CodeQL failed, this will stop the flow.
-      run: echo "CodeQL scan failed, stopping workflow" && exit 1
-
-    # Run tests (with the correct test DLL)
-    - name: Run tests (with the correct test DLL)
-      run: dotnet test ./AwesomeBank.Test/AwesomeBank.Test.csproj --configuration Release --no-build  # Explicitly run tests for the test project
+  # Optionally, you can add other jobs for static analysis or other tasks here.
