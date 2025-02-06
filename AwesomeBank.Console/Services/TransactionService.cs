@@ -1,6 +1,7 @@
-﻿namespace AwesomeBank.Console.Services;
+﻿
+namespace AwesomeBank.Console.Services;
 
-public class TransactionService(CommandHandleHelper commandHandle)
+public class TransactionService(CommandHandleHelper commandHandle): ITransactionService
 {
     private readonly CommandHandleHelper _commandHandle = commandHandle;
 

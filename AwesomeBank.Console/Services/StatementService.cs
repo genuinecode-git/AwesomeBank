@@ -2,7 +2,7 @@
 
 namespace AwesomeBank.Console.Services;
 
-public class StatementService(IStatementService statementService)
+public class StatementService(IStatementService statementService): IConsoleStatementService
 {
     private IStatementService _statementService = statementService;
 
