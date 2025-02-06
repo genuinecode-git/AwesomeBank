@@ -1,9 +1,9 @@
 ﻿
 namespace AwesomeBank.Console.Services;
 
-public class TransactionService(CommandHandleHelper commandHandle): ITransactionService
+public class TransactionService(ICommandHandleHelper commandHandle): ITransactionService
 {
-    private readonly CommandHandleHelper _commandHandle = commandHandle;
+    private readonly ICommandHandleHelper _commandHandle = commandHandle;
 
     public async Task InputTransactionsAsync()
     {
@@ -12,14 +12,14 @@ public class TransactionService(CommandHandleHelper commandHandle): ITransaction
         System.Console.Write("> ");
         string input = System.Console.ReadLine()?.Trim();
 
-        if (string.IsNullOrEmpty(input)) return;  // Exit if input is blank
+        if (string.IsNullOrEmpty(input)) return;  
 
         string[] parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
         if (parts.Length != 4 || !ValidateTransaction(parts, out var date, out var account, out var type, out var amount))
         {
             System.Console.WriteLine("Invalid input format.");
-            return;  // Return if the input is invalid
+            return;  
         }
         var command = new AddTransactionCommand(account, date, type, amount);
         var validator = new AddTransactionCommandValidator();

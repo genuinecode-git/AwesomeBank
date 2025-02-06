@@ -1,5 +1,4 @@
 ﻿using AwesomeBank.API.Application.Queries;
-using AwesomeBank.API.Application.Services;
 
 namespace AwesomeBank.ServiceTests.Test;
 
@@ -8,17 +7,17 @@ public partial class StatementServiceTests
 {
     private Mock<IAccountQueries> _accountQueriesMock;
     private Mock<IInterestRulesQueries> _interestRulesQueriesMock;
-    private Mock<ILogger<StatementService>> _loggerMock;
-    private StatementService _statementService;
+    private Mock<ILogger<API.Application.Services.StatementService>> _loggerMock;
+    private API.Application.Services.StatementService _statementService;
 
     [SetUp]
     public void Setup()
     {
         this._accountQueriesMock = new Mock<IAccountQueries>();
         this._interestRulesQueriesMock = new Mock<IInterestRulesQueries>();
-        this._loggerMock = new Mock<ILogger<StatementService>>();
+        this._loggerMock = new Mock<ILogger<API.Application.Services.StatementService>>();
 
-        _statementService = new StatementService(
+        _statementService = new API.Application.Services.StatementService(
             this._accountQueriesMock.Object,
             this._interestRulesQueriesMock.Object,
             this._loggerMock.Object
