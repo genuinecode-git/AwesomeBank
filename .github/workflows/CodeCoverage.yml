@@ -1,0 +1,46 @@
+name: .NET Core Code Coverage
+
+on:
+  push:
+    branches:
+      - main  # Run on push to main branch (change as needed)
+  pull_request:
+    branches:
+      - main  # Run on pull request to main branch
+
+jobs:
+  build:
+    name: Build and Run Tests with Coverage
+    runs-on: ubuntu-latest  # Use an appropriate runner (ubuntu, windows-latest, or macos-latest)
+
+    steps:
+    # Checkout code
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Set up .NET SDK
+    - name: Set up .NET SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.x'  # Adjust the .NET version as needed
+
+    # Restore dependencies
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # Build the project
+    - name: Build the project
+      run: dotnet build --configuration Release
+
+    # Run tests with coverage using Coverlet
+    - name: Run tests with code coverage
+      run: dotnet test --configuration Release --collect:"XPlat Code Coverage"
+
+    # Upload code coverage results to Codecov
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        file: ./TestResults/coverage.cobertura.xml  # Path to coverage report (Codecov supports multiple formats, such as Cobertura)
+        token: ${{ secrets.CODECOV_TOKEN }}  # Add your Codecov token as a secret in GitHub settings
+
+  # Optionally, you can add other jobs for static analysis or other tasks here.
