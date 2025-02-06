@@ -38,17 +38,13 @@ jobs:
     - name: Build the project
       run: dotnet build --configuration Release
 
-    # Run tests with code coverage using Coverlet
+    # Run tests with coverage using Coverlet
     - name: Run tests with code coverage
-      run: |
-        dotnet test --configuration Release --collect:"XPlat Code Coverage"
-        # Use coverlet to generate Cobertura format
-        dotnet tool install --global coverlet.console
-        coverlet ./bin/Release/net5.0/AwesomeBank.Test.dll --target "dotnet" --targetargs "test --no-build" --format cobertura --output ./TestResults/coverage.cobertura.xml
+      run: dotnet test --configuration Release --collect:"XPlat Code Coverage"
 
     # Upload code coverage results to Codecov
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v2
       with:
-        file: ./TestResults/*/coverage.cobertura.xml  # Path to coverage report (use wildcard to capture coverage file)
+        file: /AwesomeBank.Test/TestResults/*/coverage.cobertura.xml  # Path to coverage report (use wildcard to capture coverage file)
         token: ${{ secrets.CODECOV_TOKEN }}  # Add your Codecov token as a secret in GitHub settings
