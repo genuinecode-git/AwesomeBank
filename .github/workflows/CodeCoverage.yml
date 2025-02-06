@@ -46,5 +46,5 @@ jobs:
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v2
       with:
-        file: ./TestResults/*/coverage.cobertura.xml  # Path to coverage report (use wildcard to capture coverage file)
+        file: ./AwesomeBank.Test/TestResults/*/coverage.cobertura.xml  # Path to coverage report (use wildcard to capture coverage file)
         token: ${{ secrets.CODECOV_TOKEN }}  # Add your Codecov token as a secret in GitHub settings
