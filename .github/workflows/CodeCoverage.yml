@@ -11,18 +11,18 @@ on:
 jobs:
   build:
     name: Build and Run Tests with Coverage
-    runs-on: ubuntu-latest  # Use an appropriate runner (ubuntu, windows-latest, or macos-latest)
+    runs-on: ubuntu-22.04  # Use an appropriate runner (ubuntu, windows-latest, or macos-latest)
 
     steps:
     # Checkout code
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Install OpenSSL and libssl-dev explicitly
-    - name: Install OpenSSL and libssl-dev
+    # Install OpenSSL 3.x and libssl-dev
+    - name: Install OpenSSL 3.x and libssl-dev
       run: |
         sudo apt-get update
-        sudo apt-get install -y libssl1.1 libssl-dev openssl
+        sudo apt-get install -y openssl libssl-dev
 
     # Set up .NET SDK
     - name: Set up .NET SDK
