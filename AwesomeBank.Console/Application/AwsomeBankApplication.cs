@@ -1,17 +1,16 @@
-﻿using AwesomeBank.Console.Services;
-
+﻿
 namespace AwesomeBank.Console.Application;
 
 public class AwsomeBankApplication(
     ILogger<AwsomeBankApplication> logger,
-    TransactionService transactionService,
-    InterestRuleService interestRuleService,
-    Services.StatementService statementService
+    ITransactionService transactionService,
+    IInterestRuleService interestRuleService,
+    IConsoleStatementService statementService
     ) : ConsoleApplicationBase(logger)
 {
-    private readonly TransactionService _transactionService = transactionService;
-    private readonly InterestRuleService _interestRuleService = interestRuleService;
-    private readonly Services.StatementService _statementService = statementService;
+    private readonly ITransactionService _transactionService = transactionService;
+    private readonly IInterestRuleService _interestRuleService = interestRuleService;
+    private readonly IConsoleStatementService _statementService = statementService;
 
     protected override async Task MainMenuDisplay()
     {
