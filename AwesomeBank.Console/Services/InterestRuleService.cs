@@ -1,6 +1,6 @@
 ﻿namespace AwesomeBank.Console.Services;
 
-public class InterestRuleService(ICommandHandleHelper commandHandle): IInterestRuleService
+public class InterestRuleService(ICommandHandleHelper commandHandle) : IInterestRuleService
 {
     private readonly ICommandHandleHelper _commandHandle = commandHandle;
 

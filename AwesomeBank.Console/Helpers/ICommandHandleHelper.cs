@@ -1,5 +1,4 @@
-﻿
-namespace AwesomeBank.Console.Helpers;
+﻿namespace AwesomeBank.Console.Helpers;
 
 public interface ICommandHandleHelper
 {

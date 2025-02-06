@@ -1,5 +1,4 @@
-﻿
-namespace AwesomeBank.Test.FunctionalTests;
+﻿namespace AwesomeBank.Test.FunctionalTests;
 
 [TestFixture]
 public class StatementServiceTests
@@ -53,7 +52,7 @@ public class StatementServiceTests
     public async Task PrintStatementAsync_ErrorMessage_InvalidInput()
     {
         // Arrange
-        var userInput = "12345 2023"; 
+        var userInput = "12345 2023";
         System.Console.SetIn(new System.IO.StringReader(userInput));
 
         var consoleOutput = new StringWriter();
@@ -70,7 +69,7 @@ public class StatementServiceTests
     [Test]
     public async Task PrintStatementAsync_NoTransactionsMessage_NoTransactions()
     {
-        var emptyStatement = new AccountStatementModel("12345", []);       
+        var emptyStatement = new AccountStatementModel("12345", []);
 
         _statementServiceMock.Setup(x => x.GetStatement(It.IsAny<StatementRequest>()))
                              .Returns(emptyStatement);
@@ -93,7 +92,7 @@ public class StatementServiceTests
     public async Task PrintStatementAsync_DoNothing_BlankInput()
     {
         // Arrange
-        var userInput = "";  
+        var userInput = "";
         System.Console.SetIn(new System.IO.StringReader(userInput));
 
         var consoleOutput = new StringWriter();

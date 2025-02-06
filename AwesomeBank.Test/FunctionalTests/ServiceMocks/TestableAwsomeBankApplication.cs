@@ -10,9 +10,10 @@ public class TestableAwsomeBankApplication(
     IConsoleStatementService statementService
     ) : AwsomeBankApplication(logger, transactionService, interestRuleService, statementService)
 {
-
     // Expose the protected methods for testing
     public new async Task TestHandleTransactions() => await transactionService.InputTransactionsAsync();
+
     public new async Task TestHandleInterestRules() => await interestRuleService.DefineInterestRulesAsync();
+
     public new async Task TestHandlePrintStatement() => await statementService.PrintStatementAsync();
 }

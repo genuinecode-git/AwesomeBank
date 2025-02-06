@@ -1,5 +1,4 @@
-﻿
-namespace AwesomeBank.Console.Application;
+﻿namespace AwesomeBank.Console.Application;
 
 public class AwsomeBankApplication(
     ILogger<AwsomeBankApplication> logger,
