@@ -3,10 +3,10 @@ name: .NET Core Code Coverage
 on:
   push:
     branches:
-      - master  # Run on push to main branch (change as needed)
+      - master  # Run on push to master branch (change as needed)
   pull_request:
     branches:
-      - master  # Run on pull request to main branch
+      - master  # Run on pull request to master branch
 
 jobs:
   build:
@@ -18,9 +18,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Install libssl-dev to fix the "No usable version of libssl was found" error
-    - name: Install libssl-dev
-      run: sudo apt-get update && sudo apt-get install -y libssl-dev
+    # Install OpenSSL and libssl-dev to fix the "No usable version of libssl was found" error
+    - name: Install OpenSSL and libssl-dev
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libssl-dev openssl
 
     # Set up .NET SDK
     - name: Set up .NET SDK
