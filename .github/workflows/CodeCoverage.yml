@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - master  # Run on pull request to master branch
+  workflow_dispatch:
 
 jobs:
   build:
