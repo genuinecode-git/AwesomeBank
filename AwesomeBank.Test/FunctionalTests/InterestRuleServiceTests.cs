@@ -81,7 +81,6 @@ public class InterestRuleServiceTests
         ), Times.Never);
 
         Assert.That(output.Contains("Invalid date format. Use YYYYMMdd."), Is.True);
-
     }
 
     [Test]

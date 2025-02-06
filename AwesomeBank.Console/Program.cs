@@ -39,10 +39,10 @@ var host = Host.CreateDefaultBuilder()
         services.AddSingleton<IAccountQueries, AccountQueries>();
         services.AddSingleton<IInterestRulesQueries, InterestRulesQueries>();
         services.AddSingleton<IStatementService, AwesomeBank.API.Application.Services.StatementService>();
-        services.AddSingleton<IConsoleStatementService,AwesomeBank.Console.Services.StatementService>();
-        services.AddSingleton<ITransactionService,TransactionService>();
-        services.AddSingleton<IInterestRuleService,InterestRuleService>();
-        services.AddSingleton<ICommandHandleHelper,CommandHandleHelper>();
+        services.AddSingleton<IConsoleStatementService, AwesomeBank.Console.Services.StatementService>();
+        services.AddSingleton<ITransactionService, TransactionService>();
+        services.AddSingleton<IInterestRuleService, InterestRuleService>();
+        services.AddSingleton<ICommandHandleHelper, CommandHandleHelper>();
 
         services.AddSingleton<IConsoleApplication, AwsomeBankApplication>();
     })

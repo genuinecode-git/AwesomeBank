@@ -1,6 +1,6 @@
 ﻿namespace AwesomeBank.Console.Helpers;
 
-public class CommandHandleHelper(IMediator mediator): ICommandHandleHelper
+public class CommandHandleHelper(IMediator mediator) : ICommandHandleHelper
 {
     private readonly IMediator _mediator = mediator;
 

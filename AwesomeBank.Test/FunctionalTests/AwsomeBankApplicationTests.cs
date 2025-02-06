@@ -1,5 +1,4 @@
-﻿
-using AwesomeBank.Console.Application;
+﻿using AwesomeBank.Console.Application;
 using AwesomeBank.Console.Services.Interfaces;
 using AwesomeBank.Test.FunctionalTests.ServiceMocks;
 
@@ -112,5 +111,4 @@ public class AwsomeBankApplicationTests
         // Assert
         Assert.That(ex.Message, Does.Contain("Test argument exception"));
     }
-
 }

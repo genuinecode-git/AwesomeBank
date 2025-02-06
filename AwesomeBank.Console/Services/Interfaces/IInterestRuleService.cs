@@ -1,6 +1,4 @@
-﻿
-
-namespace AwesomeBank.Console.Services.Interfaces
+﻿namespace AwesomeBank.Console.Services.Interfaces
 {
     public interface IInterestRuleService
     {

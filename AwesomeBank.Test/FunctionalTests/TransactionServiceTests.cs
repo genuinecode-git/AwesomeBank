@@ -1,6 +1,4 @@
-﻿
-
-namespace AwesomeBank.Test.FunctionalTests;
+﻿namespace AwesomeBank.Test.FunctionalTests;
 
 [TestFixture]
 public class TransactionServiceTests
@@ -83,7 +81,7 @@ public class TransactionServiceTests
     public async Task InputTransactionsAsync_DoNothing_IsBlank()
     {
         // Arrange
-        var userInput = ""; 
+        var userInput = "";
 
         var consoleOutput = new StringWriter();
         System.Console.SetOut(consoleOutput);
@@ -96,4 +94,3 @@ public class TransactionServiceTests
         Assert.That(output.Contains("Account:"), Is.False);
     }
 }
-
