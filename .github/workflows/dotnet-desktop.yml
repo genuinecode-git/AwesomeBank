@@ -1,0 +1,58 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main  # Run on push to main branch (change as needed)
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3  # Ensure you are using the latest v3 of checkout
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v3  # Ensure you are using the latest v3 of setup-dotnet
+      with:
+        dotnet-version: '8.0'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build the Console project (AwesomeBank.Console)
+      run: dotnet build ./AwesomeBank.Console/AwesomeBank.Console.csproj --configuration Release
+
+
+    # Run tests with coverage using Coverlet
+    - name: Run tests with code coverage
+      run: dotnet test --configuration Release --collect:"XPlat Code Coverage"
+
+    # Upload code coverage results to Codecov
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        file: ./TestResults/coverage.cobertura.xml  # Path to coverage report (Codecov supports multiple formats, such as Cobertura)
+        token: ${{ secrets.CODECOV_TOKEN }}  # Add your Codecov token as a secret in GitHub settings
+
+    - name: Build the Test project (AwesomeBank.Test) before running tests
+      if: success()
+      run: dotnet build ./AwesomeBank.Test/AwesomeBank.Test.csproj --configuration Release  # Explicitly build the test project
+
+    - name: Run tests (with the correct test DLL)
+      run: dotnet test ./AwesomeBank.Test/AwesomeBank.Test.csproj --configuration Release --no-build  # Explicitly run tests for the test project
+
+    - name: Create release package (ZIP) for AwesomeBank.Console
+      if: success()
+      run: |
+        dotnet publish ./AwesomeBank.Console/AwesomeBank.Console.csproj --configuration Release --output ./publish
+        zip -r SimpleBank-v1.zip ./publish  # Create the ZIP for only this project
+
+    - name: Upload release artifact
+      if: success()  # Only upload if the package is created
+      uses: actions/upload-artifact@v4  # Updated to v4
+      with:
+        name: SimpleBank-Release
+        path: ./SimpleBank-v1.zip  # Path to the generated ZIP file

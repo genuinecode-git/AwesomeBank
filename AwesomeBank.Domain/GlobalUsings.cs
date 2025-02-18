@@ -1,0 +1,1 @@
+﻿global using AwesomeBank.Domain.Entities;

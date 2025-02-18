@@ -1,0 +1,51 @@
+name: .NET Core Code Coverage
+
+on:
+  push:
+    branches:
+      - master  # Run on push to master branch (change as needed)
+  pull_request:
+    branches:
+      - master  # Run on pull request to master branch
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build and Run Tests with Coverage
+    runs-on: ubuntu-22.04  # Use an appropriate runner (ubuntu, windows-latest, or macos-latest)
+
+    steps:
+    # Checkout code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Install OpenSSL 3.x and libssl-dev
+    - name: Install OpenSSL 3.x and libssl-dev
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y openssl libssl-dev
+
+    # Set up .NET SDK
+    - name: Set up .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '5.0.x'  # Adjust the .NET version as needed
+
+    # Restore dependencies
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # Build the project
+    - name: Build the project
+      run: dotnet build --configuration Release
+
+    # Run tests with coverage using Coverlet
+    - name: Run tests with code coverage
+      run: dotnet test --configuration Release --collect:"XPlat Code Coverage"
+
+    # Upload code coverage results to Codecov
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        file: /AwesomeBank.Test/TestResults/*/coverage.cobertura.xml  # Path to coverage report (use wildcard to capture coverage file)
+        token: ${{ secrets.CODECOV_TOKEN }}  # Add your Codecov token as a secret in GitHub settings

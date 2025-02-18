@@ -1,0 +1,140 @@
+2025-02-04 12:50:31.963 +08:00 [INF] Application started.
+2025-02-04 12:51:32.936 +08:00 [INF] [Start] Processing interest rule: RULE03 - 1%
+2025-02-04 12:51:32.960 +08:00 [INF] [Completed] New interest rule added: RULE03 - 1%
+2025-02-04 13:08:46.715 +08:00 [INF] Application started.
+2025-02-04 13:10:03.336 +08:00 [INF] Retrieving account AC001
+2025-02-04 13:12:16.162 +08:00 [INF] Application started.
+2025-02-04 13:12:26.056 +08:00 [INF] Retrieving account AC001
+2025-02-04 13:16:11.920 +08:00 [INF] Application started.
+2025-02-04 13:16:20.364 +08:00 [INF] Retrieving account AC001
+2025-02-04 13:16:20.441 +08:00 [WRN] 
+Exception Occurs : Account Not found.
+2025-02-04 13:26:09.804 +08:00 [INF] Application started.
+2025-02-04 13:29:50.190 +08:00 [INF] Application started.
+2025-02-04 13:29:54.553 +08:00 [INF] Retrieving account AC001
+2025-02-04 13:29:54.727 +08:00 [WRN] 
+Exception Occurs : Account Not found.
+2025-02-04 13:31:32.754 +08:00 [INF] Application started.
+2025-02-04 13:31:51.295 +08:00 [INF] Application started.
+2025-02-04 13:32:03.399 +08:00 [INF] Retrieving account AC001
+2025-02-04 13:32:03.540 +08:00 [WRN] 
+Exception Occurs : Account Not found.
+2025-02-04 13:39:38.035 +08:00 [INF] Application started.
+2025-02-04 13:39:45.346 +08:00 [INF] Retrieving account AC001
+2025-02-04 13:39:45.450 +08:00 [WRN] 
+Exception Occurs : Account Not found.
+2025-02-04 13:40:13.004 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 13:40:13.006 +08:00 [INF] [Processing] Creating new account for : AC001
+2025-02-04 13:40:13.007 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 13:40:13.035 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230505-01
+2025-02-04 13:40:24.330 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 13:40:31.015 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 13:40:31.015 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230626-01
+2025-02-04 13:40:54.813 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 13:40:54.821 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 13:40:54.821 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230626-02
+2025-02-04 13:41:17.269 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 13:41:17.488 +08:00 [WRN] 
+Exception Occurs : AC001 do not have enouch balance (20.00)$ to withdraw.
+2025-02-04 15:05:34.734 +08:00 [INF] Application started.
+2025-02-04 15:05:39.955 +08:00 [INF] [Start] Processing interest rule: RULE01 - 1.95%
+2025-02-04 15:05:39.971 +08:00 [INF] [Completed] New interest rule added: RULE01 - 1.95%
+2025-02-04 15:05:47.082 +08:00 [INF] [Start] Processing interest rule: RULE02 - 1.90%
+2025-02-04 15:05:47.124 +08:00 [INF] [Completed] New interest rule added: RULE02 - 1.90%
+2025-02-04 15:05:54.841 +08:00 [INF] [Start] Processing interest rule: RULE03 - 2.20%
+2025-02-04 15:05:54.843 +08:00 [INF] [Completed] New interest rule added: RULE03 - 2.20%
+2025-02-04 15:06:02.768 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 15:06:02.771 +08:00 [INF] [Processing] Creating new account for : AC001
+2025-02-04 15:06:02.771 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 15:06:02.773 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230505-01
+2025-02-04 15:06:09.594 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 15:06:09.617 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 15:06:09.618 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230601-01
+2025-02-04 15:06:15.761 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 15:06:15.770 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 15:06:15.770 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230626-01
+2025-02-04 15:06:22.025 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 15:06:22.027 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 15:06:22.027 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230626-02
+2025-02-04 15:06:28.176 +08:00 [INF] Retrieving account AC001
+2025-02-04 15:06:31.436 +08:00 [INF] Starting interest calculation for account AC001 for 2023-6.
+2025-02-04 15:14:29.201 +08:00 [INF] Application started.
+2025-02-04 15:14:38.424 +08:00 [INF] [Start] Processing interest rule: RULE01 - 1.95%
+2025-02-04 15:14:38.441 +08:00 [INF] [Completed] New interest rule added: RULE01 - 1.95%
+2025-02-04 15:14:44.427 +08:00 [INF] [Start] Processing interest rule: RULE02 - 1.90%
+2025-02-04 15:14:44.429 +08:00 [INF] [Completed] New interest rule added: RULE02 - 1.90%
+2025-02-04 15:14:50.993 +08:00 [INF] [Start] Processing interest rule: RULE03 - 2.20%
+2025-02-04 15:14:50.995 +08:00 [INF] [Completed] New interest rule added: RULE03 - 2.20%
+2025-02-04 15:14:58.582 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 15:14:58.585 +08:00 [INF] [Processing] Creating new account for : AC001
+2025-02-04 15:14:58.585 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 15:14:58.588 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230505-01
+2025-02-04 15:15:03.497 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 15:15:03.499 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 15:15:03.499 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230601-01
+2025-02-04 15:15:08.961 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 15:15:08.967 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 15:15:08.967 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230626-01
+2025-02-04 15:15:16.354 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 15:15:16.357 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 15:15:16.357 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230626-02
+2025-02-04 15:15:23.766 +08:00 [INF] Retrieving account AC001
+2025-02-04 15:15:23.772 +08:00 [INF] Starting interest calculation for account AC001 for 2023-6.
+2025-02-04 15:18:36.157 +08:00 [INF] Application started.
+2025-02-04 15:19:10.848 +08:00 [INF] Application started.
+2025-02-04 15:19:28.487 +08:00 [INF] Application started.
+2025-02-04 15:19:35.820 +08:00 [INF] [Start] Processing interest rule: RULE01 - 1.95%
+2025-02-04 15:19:35.841 +08:00 [INF] [Completed] New interest rule added: RULE01 - 1.95%
+2025-02-04 15:19:44.650 +08:00 [INF] [Start] Processing interest rule: RULE02 - 1.90%
+2025-02-04 15:19:44.651 +08:00 [INF] [Completed] New interest rule added: RULE02 - 1.90%
+2025-02-04 15:19:49.474 +08:00 [INF] [Start] Processing interest rule: RULE03 - 2.20%
+2025-02-04 15:19:49.476 +08:00 [INF] [Completed] New interest rule added: RULE03 - 2.20%
+2025-02-04 15:19:54.068 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 15:19:54.071 +08:00 [INF] [Processing] Creating new account for : AC001
+2025-02-04 15:19:54.071 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 15:19:54.074 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230505-01
+2025-02-04 15:19:59.299 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 15:19:59.301 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 15:19:59.301 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230601-01
+2025-02-04 15:20:05.065 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 15:20:05.073 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 15:20:05.073 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230626-01
+2025-02-04 15:20:11.041 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 15:20:11.044 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 15:20:11.044 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230626-02
+2025-02-04 15:20:21.399 +08:00 [INF] Retrieving account AC001
+2025-02-04 15:20:21.405 +08:00 [INF] Starting interest calculation for account AC001 for 2023-6.
+2025-02-04 15:20:57.193 +08:00 [INF] Retrieving account AC001
+2025-02-04 15:20:57.195 +08:00 [INF] Starting interest calculation for account AC001 for 2023-5.
+2025-02-04 15:22:14.769 +08:00 [INF] Retrieving account AC001
+2025-02-04 15:22:37.064 +08:00 [INF] Starting interest calculation for account AC001 for 2023-5.
+2025-02-04 15:23:12.406 +08:00 [INF] Starting interest calculation for account AC001 for 2023-5.
+2025-02-04 16:44:14.464 +08:00 [INF] Application started.
+2025-02-04 16:44:31.282 +08:00 [INF] Application started.
+2025-02-04 16:44:43.406 +08:00 [INF] [Start] Processing interest rule: RULE01 - 1.95%
+2025-02-04 16:44:43.427 +08:00 [INF] [Completed] New interest rule added: RULE01 - 1.95%
+2025-02-04 16:44:50.045 +08:00 [INF] [Start] Processing interest rule: RULE02 - 1.90%
+2025-02-04 16:44:50.047 +08:00 [INF] [Completed] New interest rule added: RULE02 - 1.90%
+2025-02-04 16:44:56.682 +08:00 [INF] [Start] Processing interest rule: RULE03 - 2.20%
+2025-02-04 16:44:56.689 +08:00 [INF] [Completed] New interest rule added: RULE03 - 2.20%
+2025-02-04 16:45:23.110 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 16:45:23.112 +08:00 [INF] [Processing] Creating new account for : AC001
+2025-02-04 16:45:23.113 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 16:45:23.115 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230505-01
+2025-02-04 16:45:30.278 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 16:45:30.314 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 16:45:30.314 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230601-01
+2025-02-04 16:45:35.885 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 16:45:35.895 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 16:45:35.895 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230626-01
+2025-02-04 16:45:43.296 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-04 16:45:43.299 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-04 16:45:43.299 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20230626-02
+2025-02-04 16:45:49.434 +08:00 [INF] Retrieving account AC001
+2025-02-04 16:45:49.444 +08:00 [INF] Starting interest calculation for account AC001 for 2023-6.
+2025-02-04 16:45:58.804 +08:00 [INF] Retrieving account AC001
+2025-02-04 16:45:58.806 +08:00 [INF] Starting interest calculation for account AC001 for 2023-5.
+2025-02-04 16:46:18.092 +08:00 [INF] Retrieving account AC001
+2025-02-04 16:46:18.094 +08:00 [INF] Starting interest calculation for account AC001 for 2023-2.
+2025-02-04 16:46:54.260 +08:00 [INF] Retrieving account AC001
+2025-02-04 16:46:54.262 +08:00 [INF] Starting interest calculation for account AC001 for 2023-7.
