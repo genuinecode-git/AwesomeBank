@@ -1,0 +1,12 @@
+E:\ExamProjects\AwesomeBank\AwesomeBank.Domain\bin\Debug\net8.0\AwesomeBank.Domain.deps.json
+E:\ExamProjects\AwesomeBank\AwesomeBank.Domain\bin\Debug\net8.0\AwesomeBank.Domain.dll
+E:\ExamProjects\AwesomeBank\AwesomeBank.Domain\bin\Debug\net8.0\AwesomeBank.Domain.pdb
+E:\ExamProjects\AwesomeBank\AwesomeBank.Domain\obj\Debug\net8.0\AwesomeBank.Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\ExamProjects\AwesomeBank\AwesomeBank.Domain\obj\Debug\net8.0\AwesomeBank.Domain.AssemblyInfoInputs.cache
+E:\ExamProjects\AwesomeBank\AwesomeBank.Domain\obj\Debug\net8.0\AwesomeBank.Domain.AssemblyInfo.cs
+E:\ExamProjects\AwesomeBank\AwesomeBank.Domain\obj\Debug\net8.0\AwesomeBank.Domain.csproj.CoreCompileInputs.cache
+E:\ExamProjects\AwesomeBank\AwesomeBank.Domain\obj\Debug\net8.0\AwesomeBank.Domain.sourcelink.json
+E:\ExamProjects\AwesomeBank\AwesomeBank.Domain\obj\Debug\net8.0\AwesomeBank.Domain.dll
+E:\ExamProjects\AwesomeBank\AwesomeBank.Domain\obj\Debug\net8.0\refint\AwesomeBank.Domain.dll
+E:\ExamProjects\AwesomeBank\AwesomeBank.Domain\obj\Debug\net8.0\AwesomeBank.Domain.pdb
+E:\ExamProjects\AwesomeBank\AwesomeBank.Domain\obj\Debug\net8.0\ref\AwesomeBank.Domain.dll

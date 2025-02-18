@@ -1,0 +1,86 @@
+[
+  {
+    "ContainingType": "AwesomeBank.API.Controllers.AccountController",
+    "Method": "GetTransactions",
+    "RelativePath": "api/Account/{accountNumber}/{year}/{month}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "accountNumber",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "year",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "month",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AwesomeBank.API.Controllers.AccountController",
+    "Method": "GetStatement",
+    "RelativePath": "api/Account/{AccountNumber}/GetStatement/{Year}/{Month}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "AccountNumber",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "Year",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "Month",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AwesomeBank.API.Controllers.AccountController",
+    "Method": "AddTransaction",
+    "RelativePath": "api/Account/AddTransaction",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "AwesomeBank.API.Application.Commands.AddTransactionCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AwesomeBank.API.Controllers.InterestRuleController",
+    "Method": "Add",
+    "RelativePath": "api/InterestRule",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "AwesomeBank.API.Application.Commands.AddInterestRuleCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

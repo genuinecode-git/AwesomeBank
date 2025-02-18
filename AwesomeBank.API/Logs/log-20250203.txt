@@ -1,0 +1,412 @@
+2025-02-03 00:02:55.077 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/swagger/index.html - null null
+2025-02-03 00:02:55.539 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-03 00:02:55.548 +08:00 [INF] Hosting environment: Development
+2025-02-03 00:02:55.549 +08:00 [INF] Content root path: E:\ExamProjects\AwesomeBank\AwesomeBank.API
+2025-02-03 00:02:55.924 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/swagger/index.html - 200 null text/html;charset=utf-8 872.5145ms
+2025-02-03 00:02:56.153 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/_vs/browserLink - null null
+2025-02-03 00:02:56.298 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/_framework/aspnetcore-browser-refresh.js - null null
+2025-02-03 00:02:56.305 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 6.1132ms
+2025-02-03 00:02:56.406 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/_vs/browserLink - 200 null text/javascript; charset=UTF-8 265.2562ms
+2025-02-03 00:02:56.600 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/swagger/v1/swagger.json - null null
+2025-02-03 00:02:56.635 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 46.3813ms
+2025-02-03 00:03:36.875 +08:00 [INF] Request starting HTTP/2 POST https://localhost:44315/api/InterestRule - application/json 65
+2025-02-03 00:03:36.906 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API)'
+2025-02-03 00:03:36.973 +08:00 [INF] Route matched with {action = "Add", controller = "InterestRule"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Add(AwesomeBank.API.Application.Commands.AddInterestRuleCommand) on controller AwesomeBank.API.Controllers.InterestRuleController (AwesomeBank.API).
+2025-02-03 00:03:37.069 +08:00 [INF] Received request to add interest Rate RULE01 
+2025-02-03 00:03:37.366 +08:00 [INF] [Start] Processing interest rule: RULE01  - 1.95%
+2025-02-03 00:03:37.377 +08:00 [INF] [Completed] New interest rule added: RULE01  - 1.95%
+2025-02-03 00:03:37.677 +08:00 [INF] Executed action AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API) in 700.0762ms
+2025-02-03 00:03:37.680 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API)'
+2025-02-03 00:03:37.686 +08:00 [ERR] An unhandled exception has occurred while executing the request.
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[AwesomeBank.Domain.Entities.InterestRule, AwesomeBank.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[AwesomeBank.API.Application.Models.ViewModels.InterestRuleViewModel, AwesomeBank.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+InterestRule -> InterestRuleViewModel
+AwesomeBank.Domain.Entities.InterestRule -> AwesomeBank.API.Application.Models.ViewModels.InterestRuleViewModel
+   at lambda_method15(Closure, InterestRule, InterestRuleViewModel, ResolutionContext)
+   at lambda_method14(Closure, Object, List`1, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method14(Closure, Object, List`1, ResolutionContext)
+   at AwesomeBank.API.Application.Commands.AddInterestRuleCommandHandler.Handle(AddInterestRuleCommand request, CancellationToken cancellationToken) in E:\ExamProjects\AwesomeBank\AwesomeBank.API\Application\Commands\AddInterestRuleCommandHandler.cs:line 41
+   at AwesomeBank.API.Controllers.InterestRuleController.Add(AddInterestRuleCommand command) in E:\ExamProjects\AwesomeBank\AwesomeBank.API\Controllers\InterestRuleController.cs:line 15
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-03 00:03:37.763 +08:00 [INF] Request finished HTTP/2 POST https://localhost:44315/api/InterestRule - 500 null text/plain; charset=utf-8 887.4676ms
+2025-02-03 00:05:46.173 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/swagger/index.html - null null
+2025-02-03 00:05:46.305 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-03 00:05:46.315 +08:00 [INF] Hosting environment: Development
+2025-02-03 00:05:46.315 +08:00 [INF] Content root path: E:\ExamProjects\AwesomeBank\AwesomeBank.API
+2025-02-03 00:05:46.706 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/swagger/index.html - 200 null text/html;charset=utf-8 566.1583ms
+2025-02-03 00:05:46.744 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/_framework/aspnetcore-browser-refresh.js - null null
+2025-02-03 00:05:46.778 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/_vs/browserLink - null null
+2025-02-03 00:05:46.796 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 57.5521ms
+2025-02-03 00:05:46.958 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/_vs/browserLink - 200 null text/javascript; charset=UTF-8 179.5947ms
+2025-02-03 00:05:47.064 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/swagger/v1/swagger.json - null null
+2025-02-03 00:05:47.084 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 19.8635ms
+2025-02-03 00:05:54.586 +08:00 [INF] Request starting HTTP/2 POST https://localhost:44315/api/InterestRule - application/json 65
+2025-02-03 00:05:54.604 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API)'
+2025-02-03 00:05:54.665 +08:00 [INF] Route matched with {action = "Add", controller = "InterestRule"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Add(AwesomeBank.API.Application.Commands.AddInterestRuleCommand) on controller AwesomeBank.API.Controllers.InterestRuleController (AwesomeBank.API).
+2025-02-03 00:05:54.768 +08:00 [INF] Received request to add interest Rate RULE01 
+2025-02-03 00:05:55.169 +08:00 [INF] Executed action AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API) in 499.1085ms
+2025-02-03 00:05:55.171 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API)'
+2025-02-03 00:05:55.178 +08:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ArgumentException: Incorrect number of arguments supplied for call to method 'AwesomeBank.API.Application.Models.ViewModels.InterestRuleViewModel get_Item(Int32)' (Parameter 'property')
+   at System.Linq.Expressions.Expression.Property(Expression expression, PropertyInfo property)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreatePropertyMapFunc(MemberMap memberMap, Expression destination, MemberInfo destinationMember)
+   at AutoMapper.Execution.TypeMapPlanBuilder.AddPropertyMaps(List`1 actions)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreateAssignmentFunc(Expression createDestination)
+   at AutoMapper.Execution.TypeMapPlanBuilder.CreateMapperLambda()
+   at AutoMapper.TypeMap.CreateMapperLambda(IGlobalConfiguration configuration)
+   at AutoMapper.TypeMap.Seal(IGlobalConfiguration configuration)
+   at AutoMapper.MapperConfiguration.<.ctor>g__Seal|20_0()
+   at AutoMapper.MapperConfiguration..ctor(MapperConfigurationExpression configurationExpression)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.<>c.<AddAutoMapperClasses>b__12_2(IServiceProvider sp)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitFactory(FactoryCallSite factoryCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.<>c.<AddAutoMapperClasses>b__12_3(IServiceProvider sp)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitFactory(FactoryCallSite factoryCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0()
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(IRequest`1 request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+   at MediatR.Mediator.Send[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at AwesomeBank.API.Controllers.InterestRuleController.Add(AddInterestRuleCommand command) in E:\ExamProjects\AwesomeBank\AwesomeBank.API\Controllers\InterestRuleController.cs:line 15
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-03 00:05:55.250 +08:00 [INF] Request finished HTTP/2 POST https://localhost:44315/api/InterestRule - 500 null text/plain; charset=utf-8 664.29ms
+2025-02-03 00:08:36.237 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/swagger/index.html - null null
+2025-02-03 00:08:36.371 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-03 00:08:36.380 +08:00 [INF] Hosting environment: Development
+2025-02-03 00:08:36.381 +08:00 [INF] Content root path: E:\ExamProjects\AwesomeBank\AwesomeBank.API
+2025-02-03 00:08:36.724 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/swagger/index.html - 200 null text/html;charset=utf-8 505.2694ms
+2025-02-03 00:08:36.780 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/_vs/browserLink - null null
+2025-02-03 00:08:36.811 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/_framework/aspnetcore-browser-refresh.js - null null
+2025-02-03 00:08:36.820 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 7.991ms
+2025-02-03 00:08:36.976 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/_vs/browserLink - 200 null text/javascript; charset=UTF-8 197.2285ms
+2025-02-03 00:08:37.073 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/swagger/v1/swagger.json - null null
+2025-02-03 00:08:37.130 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 57.1556ms
+2025-02-03 00:08:44.287 +08:00 [INF] Request starting HTTP/2 POST https://localhost:44315/api/InterestRule - application/json 65
+2025-02-03 00:08:44.312 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API)'
+2025-02-03 00:08:44.363 +08:00 [INF] Route matched with {action = "Add", controller = "InterestRule"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Add(AwesomeBank.API.Application.Commands.AddInterestRuleCommand) on controller AwesomeBank.API.Controllers.InterestRuleController (AwesomeBank.API).
+2025-02-03 00:08:44.446 +08:00 [INF] Received request to add interest Rate RULE01 
+2025-02-03 00:08:44.629 +08:00 [INF] [Start] Processing interest rule: RULE01  - 1.95%
+2025-02-03 00:08:44.645 +08:00 [INF] [Completed] New interest rule added: RULE01  - 1.95%
+2025-02-03 00:08:44.676 +08:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AwesomeBank.API.Application.Models.ViewModels.InterestRuleViewModel, AwesomeBank.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-03 00:08:44.697 +08:00 [INF] Executed action AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API) in 328.7634ms
+2025-02-03 00:08:44.698 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API)'
+2025-02-03 00:08:44.699 +08:00 [INF] Request finished HTTP/2 POST https://localhost:44315/api/InterestRule - 200 null application/json; charset=utf-8 411.7033ms
+2025-02-03 00:09:26.159 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/swagger/index.html - null null
+2025-02-03 00:09:26.418 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-03 00:09:26.431 +08:00 [INF] Hosting environment: Development
+2025-02-03 00:09:26.431 +08:00 [INF] Content root path: E:\ExamProjects\AwesomeBank\AwesomeBank.API
+2025-02-03 00:09:26.901 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/swagger/index.html - 200 null text/html;charset=utf-8 773.0494ms
+2025-02-03 00:09:26.916 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/_framework/aspnetcore-browser-refresh.js - null null
+2025-02-03 00:09:26.925 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 8.8736ms
+2025-02-03 00:09:26.953 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/_vs/browserLink - null null
+2025-02-03 00:09:27.112 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/_vs/browserLink - 200 null text/javascript; charset=UTF-8 159.4945ms
+2025-02-03 00:09:27.199 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/swagger/v1/swagger.json - null null
+2025-02-03 00:09:27.217 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 17.9229ms
+2025-02-03 00:09:34.219 +08:00 [INF] Request starting HTTP/2 POST https://localhost:44315/api/InterestRule - application/json 64
+2025-02-03 00:09:34.237 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API)'
+2025-02-03 00:09:34.299 +08:00 [INF] Route matched with {action = "Add", controller = "InterestRule"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Add(AwesomeBank.API.Application.Commands.AddInterestRuleCommand) on controller AwesomeBank.API.Controllers.InterestRuleController (AwesomeBank.API).
+2025-02-03 00:09:34.400 +08:00 [INF] Received request to add interest Rate RULE01
+2025-02-03 00:09:34.581 +08:00 [INF] [Start] Processing interest rule: RULE01 - 1.95%
+2025-02-03 00:09:34.590 +08:00 [INF] [Completed] New interest rule added: RULE01 - 1.95%
+2025-02-03 00:09:34.617 +08:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AwesomeBank.API.Application.Models.ViewModels.InterestRuleViewModel, AwesomeBank.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-03 00:09:34.644 +08:00 [INF] Executed action AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API) in 333.3993ms
+2025-02-03 00:09:34.646 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API)'
+2025-02-03 00:09:34.646 +08:00 [INF] Request finished HTTP/2 POST https://localhost:44315/api/InterestRule - 200 null application/json; charset=utf-8 427.8041ms
+2025-02-03 00:10:14.245 +08:00 [INF] Request starting HTTP/2 POST https://localhost:44315/api/InterestRule - application/json 64
+2025-02-03 00:10:14.257 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API)'
+2025-02-03 00:10:14.257 +08:00 [INF] Route matched with {action = "Add", controller = "InterestRule"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Add(AwesomeBank.API.Application.Commands.AddInterestRuleCommand) on controller AwesomeBank.API.Controllers.InterestRuleController (AwesomeBank.API).
+2025-02-03 00:10:14.268 +08:00 [INF] Received request to add interest Rate RULE02
+2025-02-03 00:10:14.269 +08:00 [INF] [Start] Processing interest rule: RULE02 - 1.90%
+2025-02-03 00:10:14.273 +08:00 [INF] [Completed] New interest rule added: RULE02 - 1.90%
+2025-02-03 00:10:14.297 +08:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AwesomeBank.API.Application.Models.ViewModels.InterestRuleViewModel, AwesomeBank.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-03 00:10:14.298 +08:00 [INF] Executed action AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API) in 40.3947ms
+2025-02-03 00:10:14.298 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API)'
+2025-02-03 00:10:14.299 +08:00 [INF] Request finished HTTP/2 POST https://localhost:44315/api/InterestRule - 200 null application/json; charset=utf-8 53.8334ms
+2025-02-03 00:11:45.229 +08:00 [INF] Request starting HTTP/2 POST https://localhost:44315/api/Account/add-transaction - application/json 86
+2025-02-03 00:11:45.241 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:11:45.249 +08:00 [INF] Route matched with {action = "AddTransaction", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddTransaction(AwesomeBank.API.Application.Commands.AddTransactionCommand) on controller AwesomeBank.API.Controllers.AccountController (AwesomeBank.API).
+2025-02-03 00:11:45.260 +08:00 [INF] Received request to add transaction for account AC001
+2025-02-03 00:11:45.262 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-03 00:11:45.266 +08:00 [INF] [Processing] Creating new account for : AC001
+2025-02-03 00:11:45.267 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-03 00:11:45.295 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20250105-01
+2025-02-03 00:11:45.300 +08:00 [INF] Executing OkObjectResult, writing value of type 'AwesomeBank.API.Application.Models.ViewModels.AccountViewModel'.
+2025-02-03 00:11:45.307 +08:00 [INF] Executed action AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API) in 58.1746ms
+2025-02-03 00:11:45.309 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:11:45.310 +08:00 [INF] Request finished HTTP/2 POST https://localhost:44315/api/Account/add-transaction - 200 null application/json; charset=utf-8 81.5657ms
+2025-02-03 00:12:10.970 +08:00 [INF] Request starting HTTP/2 POST https://localhost:44315/api/Account/add-transaction - application/json 85
+2025-02-03 00:12:10.976 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:12:10.977 +08:00 [INF] Route matched with {action = "AddTransaction", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddTransaction(AwesomeBank.API.Application.Commands.AddTransactionCommand) on controller AwesomeBank.API.Controllers.AccountController (AwesomeBank.API).
+2025-02-03 00:12:10.987 +08:00 [INF] Received request to add transaction for account AC001
+2025-02-03 00:12:10.991 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-03 00:12:10.993 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-03 00:12:10.993 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20250126-02
+2025-02-03 00:12:10.993 +08:00 [INF] Executing OkObjectResult, writing value of type 'AwesomeBank.API.Application.Models.ViewModels.AccountViewModel'.
+2025-02-03 00:12:10.995 +08:00 [INF] Executed action AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API) in 17.7009ms
+2025-02-03 00:12:10.995 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:12:10.995 +08:00 [INF] Request finished HTTP/2 POST https://localhost:44315/api/Account/add-transaction - 200 null application/json; charset=utf-8 32.0319ms
+2025-02-03 00:12:40.234 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/api/Account/AC001/GetStatement/2025/01 - null null
+2025-02-03 00:12:40.263 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API)'
+2025-02-03 00:12:40.275 +08:00 [INF] Route matched with {action = "GetStatement", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetStatement(System.String, System.String, System.String) on controller AwesomeBank.API.Controllers.AccountController (AwesomeBank.API).
+2025-02-03 00:12:40.282 +08:00 [INF] Received request to get statement for account AC001- 2025-01
+2025-02-03 00:12:40.284 +08:00 [INF] Retrieving account AC001
+2025-02-03 00:12:40.397 +08:00 [INF] Executing OkObjectResult, writing value of type 'AwesomeBank.API.Application.Models.AccountStatementModel'.
+2025-02-03 00:12:40.402 +08:00 [INF] Executed action AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API) in 126.6562ms
+2025-02-03 00:12:40.402 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API)'
+2025-02-03 00:12:40.402 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/api/Account/AC001/GetStatement/2025/01 - 200 null application/json; charset=utf-8 169.2759ms
+2025-02-03 00:13:46.922 +08:00 [INF] Request starting HTTP/2 POST https://localhost:44315/api/Account/add-transaction - application/json 86
+2025-02-03 00:13:46.928 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:13:46.929 +08:00 [INF] Route matched with {action = "AddTransaction", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddTransaction(AwesomeBank.API.Application.Commands.AddTransactionCommand) on controller AwesomeBank.API.Controllers.AccountController (AwesomeBank.API).
+2025-02-03 00:13:46.930 +08:00 [INF] Received request to add transaction for account AC001
+2025-02-03 00:13:46.930 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-03 00:13:46.932 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-03 00:13:46.933 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20241210-03
+2025-02-03 00:13:46.933 +08:00 [INF] Executing OkObjectResult, writing value of type 'AwesomeBank.API.Application.Models.ViewModels.AccountViewModel'.
+2025-02-03 00:13:46.934 +08:00 [INF] Executed action AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API) in 4.847ms
+2025-02-03 00:13:46.934 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:13:46.934 +08:00 [INF] Request finished HTTP/2 POST https://localhost:44315/api/Account/add-transaction - 200 null application/json; charset=utf-8 12.1924ms
+2025-02-03 00:14:10.274 +08:00 [INF] Request starting HTTP/2 POST https://localhost:44315/api/Account/add-transaction - application/json 86
+2025-02-03 00:14:10.288 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:14:10.289 +08:00 [INF] Route matched with {action = "AddTransaction", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddTransaction(AwesomeBank.API.Application.Commands.AddTransactionCommand) on controller AwesomeBank.API.Controllers.AccountController (AwesomeBank.API).
+2025-02-03 00:14:10.290 +08:00 [INF] Received request to add transaction for account AC001
+2025-02-03 00:14:10.290 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-03 00:14:10.292 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-03 00:14:10.292 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20250126-04
+2025-02-03 00:14:10.293 +08:00 [INF] Executing OkObjectResult, writing value of type 'AwesomeBank.API.Application.Models.ViewModels.AccountViewModel'.
+2025-02-03 00:14:10.293 +08:00 [INF] Executed action AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API) in 3.9072ms
+2025-02-03 00:14:10.293 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:14:10.294 +08:00 [INF] Request finished HTTP/2 POST https://localhost:44315/api/Account/add-transaction - 200 null application/json; charset=utf-8 20.4374ms
+2025-02-03 00:14:15.773 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/api/Account/AC001/GetStatement/2025/01 - null null
+2025-02-03 00:14:15.773 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API)'
+2025-02-03 00:14:15.774 +08:00 [INF] Route matched with {action = "GetStatement", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetStatement(System.String, System.String, System.String) on controller AwesomeBank.API.Controllers.AccountController (AwesomeBank.API).
+2025-02-03 00:14:15.775 +08:00 [INF] Received request to get statement for account AC001- 2025-01
+2025-02-03 00:14:15.777 +08:00 [INF] Retrieving account AC001
+2025-02-03 00:14:15.782 +08:00 [INF] Executing OkObjectResult, writing value of type 'AwesomeBank.API.Application.Models.AccountStatementModel'.
+2025-02-03 00:14:15.784 +08:00 [INF] Executed action AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API) in 10.2512ms
+2025-02-03 00:14:15.786 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API)'
+2025-02-03 00:14:15.787 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/api/Account/AC001/GetStatement/2025/01 - 200 null application/json; charset=utf-8 14.8735ms
+2025-02-03 00:19:29.822 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/swagger/index.html - null null
+2025-02-03 00:19:29.977 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-03 00:19:29.988 +08:00 [INF] Hosting environment: Development
+2025-02-03 00:19:29.988 +08:00 [INF] Content root path: E:\ExamProjects\AwesomeBank\AwesomeBank.API
+2025-02-03 00:19:30.452 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/swagger/index.html - 200 null text/html;charset=utf-8 647.9483ms
+2025-02-03 00:19:30.483 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/_framework/aspnetcore-browser-refresh.js - null null
+2025-02-03 00:19:30.484 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/_vs/browserLink - null null
+2025-02-03 00:19:30.503 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 20.4974ms
+2025-02-03 00:19:30.582 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/_vs/browserLink - 200 null text/javascript; charset=UTF-8 100.2947ms
+2025-02-03 00:19:30.697 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/swagger/v1/swagger.json - null null
+2025-02-03 00:19:30.724 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 26.8766ms
+2025-02-03 00:20:15.280 +08:00 [INF] Request starting HTTP/2 POST https://localhost:44315/api/InterestRule - application/json 64
+2025-02-03 00:20:15.314 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API)'
+2025-02-03 00:20:15.378 +08:00 [INF] Route matched with {action = "Add", controller = "InterestRule"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Add(AwesomeBank.API.Application.Commands.AddInterestRuleCommand) on controller AwesomeBank.API.Controllers.InterestRuleController (AwesomeBank.API).
+2025-02-03 00:20:15.498 +08:00 [INF] Received request to add interest Rate RULE01
+2025-02-03 00:20:15.719 +08:00 [INF] [Start] Processing interest rule: RULE01 - 1.95%
+2025-02-03 00:20:15.732 +08:00 [INF] [Completed] New interest rule added: RULE01 - 1.95%
+2025-02-03 00:20:15.759 +08:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AwesomeBank.API.Application.Models.ViewModels.InterestRuleViewModel, AwesomeBank.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-03 00:20:15.787 +08:00 [INF] Executed action AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API) in 399.8359ms
+2025-02-03 00:20:15.787 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API)'
+2025-02-03 00:20:15.788 +08:00 [INF] Request finished HTTP/2 POST https://localhost:44315/api/InterestRule - 200 null application/json; charset=utf-8 507.6961ms
+2025-02-03 00:20:31.231 +08:00 [INF] Request starting HTTP/2 POST https://localhost:44315/api/InterestRule - application/json 64
+2025-02-03 00:20:31.233 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API)'
+2025-02-03 00:20:31.234 +08:00 [INF] Route matched with {action = "Add", controller = "InterestRule"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Add(AwesomeBank.API.Application.Commands.AddInterestRuleCommand) on controller AwesomeBank.API.Controllers.InterestRuleController (AwesomeBank.API).
+2025-02-03 00:20:31.236 +08:00 [INF] Received request to add interest Rate RULE02
+2025-02-03 00:20:31.237 +08:00 [INF] [Start] Processing interest rule: RULE02 - 1.95%
+2025-02-03 00:20:31.243 +08:00 [INF] [Completed] New interest rule added: RULE02 - 1.95%
+2025-02-03 00:20:31.248 +08:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[AwesomeBank.API.Application.Models.ViewModels.InterestRuleViewModel, AwesomeBank.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-03 00:20:31.249 +08:00 [INF] Executed action AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API) in 15.0266ms
+2025-02-03 00:20:31.250 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.InterestRuleController.Add (AwesomeBank.API)'
+2025-02-03 00:20:31.251 +08:00 [INF] Request finished HTTP/2 POST https://localhost:44315/api/InterestRule - 200 null application/json; charset=utf-8 20.224ms
+2025-02-03 00:21:10.702 +08:00 [INF] Request starting HTTP/2 POST https://localhost:44315/api/Account/add-transaction - application/json 86
+2025-02-03 00:21:10.705 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:21:10.716 +08:00 [INF] Route matched with {action = "AddTransaction", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddTransaction(AwesomeBank.API.Application.Commands.AddTransactionCommand) on controller AwesomeBank.API.Controllers.AccountController (AwesomeBank.API).
+2025-02-03 00:21:10.734 +08:00 [INF] Received request to add transaction for account AC001
+2025-02-03 00:21:10.737 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-03 00:21:10.746 +08:00 [INF] [Processing] Creating new account for : AC001
+2025-02-03 00:21:10.747 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-03 00:21:10.781 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20250105-01
+2025-02-03 00:21:10.787 +08:00 [INF] Executing OkObjectResult, writing value of type 'AwesomeBank.API.Application.Models.ViewModels.AccountViewModel'.
+2025-02-03 00:21:10.794 +08:00 [INF] Executed action AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API) in 77.3691ms
+2025-02-03 00:21:10.795 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:21:10.795 +08:00 [INF] Request finished HTTP/2 POST https://localhost:44315/api/Account/add-transaction - 200 null application/json; charset=utf-8 92.9346ms
+2025-02-03 00:21:23.497 +08:00 [INF] Request starting HTTP/2 POST https://localhost:44315/api/Account/add-transaction - application/json 85
+2025-02-03 00:21:23.498 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:21:23.499 +08:00 [INF] Route matched with {action = "AddTransaction", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddTransaction(AwesomeBank.API.Application.Commands.AddTransactionCommand) on controller AwesomeBank.API.Controllers.AccountController (AwesomeBank.API).
+2025-02-03 00:21:23.504 +08:00 [INF] Received request to add transaction for account AC001
+2025-02-03 00:21:23.505 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-03 00:21:23.508 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-03 00:21:23.825 +08:00 [INF] Executed action AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API) in 326.4021ms
+2025-02-03 00:21:23.827 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:21:23.835 +08:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ArgumentException: Transaction type must be 'D' (Deposit) or 'W' (Withdrawal).
+   at AwesomeBank.Domain.Entities.Transaction.Validate(String transactionId, DateTime date, String type, Decimal amount) in E:\ExamProjects\AwesomeBank\AwesomeBank.Domain\Aggregates\Transaction.Aggregate.cs:line 28
+   at AwesomeBank.Domain.Entities.Transaction..ctor(String transactionId, DateTime date, String type, Decimal amount) in E:\ExamProjects\AwesomeBank\AwesomeBank.Domain\Aggregates\Transaction.Aggregate.cs:line 10
+   at AwesomeBank.Domain.Entities.Account.AddTransaction(DateTime date, String type, Decimal amount) in E:\ExamProjects\AwesomeBank\AwesomeBank.Domain\Aggregates\Account.Aggregate.cs:line 16
+   at AwesomeBank.API.Application.Commands.AddTransactionCommandHandler.Handle(AddTransactionCommand request, CancellationToken cancellationToken) in E:\ExamProjects\AwesomeBank\AwesomeBank.API\Application\Commands\AddTransactionCommandHandler.cs:line 27
+   at AwesomeBank.API.Controllers.AccountController.AddTransaction(AddTransactionCommand command) in E:\ExamProjects\AwesomeBank\AwesomeBank.API\Controllers\AccountController.cs:line 21
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-02-03 00:21:23.906 +08:00 [INF] Request finished HTTP/2 POST https://localhost:44315/api/Account/add-transaction - 500 null text/plain; charset=utf-8 409.8487ms
+2025-02-03 00:21:41.843 +08:00 [INF] Request starting HTTP/2 POST https://localhost:44315/api/Account/add-transaction - application/json 85
+2025-02-03 00:21:41.844 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:21:41.844 +08:00 [INF] Route matched with {action = "AddTransaction", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddTransaction(AwesomeBank.API.Application.Commands.AddTransactionCommand) on controller AwesomeBank.API.Controllers.AccountController (AwesomeBank.API).
+2025-02-03 00:21:41.850 +08:00 [INF] Received request to add transaction for account AC001
+2025-02-03 00:21:41.851 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-03 00:21:41.858 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-03 00:21:41.858 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20250105-02
+2025-02-03 00:21:41.859 +08:00 [INF] Executing OkObjectResult, writing value of type 'AwesomeBank.API.Application.Models.ViewModels.AccountViewModel'.
+2025-02-03 00:21:41.882 +08:00 [INF] Executed action AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API) in 38.2476ms
+2025-02-03 00:21:41.883 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:21:41.883 +08:00 [INF] Request finished HTTP/2 POST https://localhost:44315/api/Account/add-transaction - 200 null application/json; charset=utf-8 40.2219ms
+2025-02-03 00:21:50.056 +08:00 [INF] Request starting HTTP/2 POST https://localhost:44315/api/Account/add-transaction - application/json 86
+2025-02-03 00:21:50.057 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:21:50.057 +08:00 [INF] Route matched with {action = "AddTransaction", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddTransaction(AwesomeBank.API.Application.Commands.AddTransactionCommand) on controller AwesomeBank.API.Controllers.AccountController (AwesomeBank.API).
+2025-02-03 00:21:50.060 +08:00 [INF] Received request to add transaction for account AC001
+2025-02-03 00:21:50.060 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-03 00:21:50.063 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-03 00:21:50.063 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20250105-03
+2025-02-03 00:21:50.064 +08:00 [INF] Executing OkObjectResult, writing value of type 'AwesomeBank.API.Application.Models.ViewModels.AccountViewModel'.
+2025-02-03 00:21:50.065 +08:00 [INF] Executed action AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API) in 8.3967ms
+2025-02-03 00:21:50.066 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:21:50.067 +08:00 [INF] Request finished HTTP/2 POST https://localhost:44315/api/Account/add-transaction - 200 null application/json; charset=utf-8 10.5912ms
+2025-02-03 00:22:02.434 +08:00 [INF] Request starting HTTP/2 POST https://localhost:44315/api/Account/add-transaction - application/json 86
+2025-02-03 00:22:02.434 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:22:02.435 +08:00 [INF] Route matched with {action = "AddTransaction", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddTransaction(AwesomeBank.API.Application.Commands.AddTransactionCommand) on controller AwesomeBank.API.Controllers.AccountController (AwesomeBank.API).
+2025-02-03 00:22:02.441 +08:00 [INF] Received request to add transaction for account AC001
+2025-02-03 00:22:02.442 +08:00 [INF] [Start] Processing transaction for account : AC001
+2025-02-03 00:22:02.444 +08:00 [INF] [Processing] Adding transaction for : AC001
+2025-02-03 00:22:02.445 +08:00 [INF] [Completed] Added transaction for : AC001 - TransactionId : 20241205-04
+2025-02-03 00:22:02.445 +08:00 [INF] Executing OkObjectResult, writing value of type 'AwesomeBank.API.Application.Models.ViewModels.AccountViewModel'.
+2025-02-03 00:22:02.446 +08:00 [INF] Executed action AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API) in 11.1762ms
+2025-02-03 00:22:02.446 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.AccountController.AddTransaction (AwesomeBank.API)'
+2025-02-03 00:22:02.450 +08:00 [INF] Request finished HTTP/2 POST https://localhost:44315/api/Account/add-transaction - 200 null application/json; charset=utf-8 15.6489ms
+2025-02-03 00:22:24.869 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/api/Account/AC001/GetStatement/2025/02 - null null
+2025-02-03 00:22:24.881 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API)'
+2025-02-03 00:22:24.890 +08:00 [INF] Route matched with {action = "GetStatement", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetStatement(System.String, System.String, System.String) on controller AwesomeBank.API.Controllers.AccountController (AwesomeBank.API).
+2025-02-03 00:22:24.896 +08:00 [INF] Received request to get statement for account AC001- 2025-02
+2025-02-03 00:22:24.899 +08:00 [INF] Retrieving account AC001
+2025-02-03 00:22:24.902 +08:00 [INF] Retrieving account AC001
+2025-02-03 00:22:24.987 +08:00 [INF] Executing OkObjectResult, writing value of type 'AwesomeBank.API.Application.Models.AccountStatementModel'.
+2025-02-03 00:22:24.995 +08:00 [INF] Executed action AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API) in 104.9047ms
+2025-02-03 00:22:24.995 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API)'
+2025-02-03 00:22:24.996 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/api/Account/AC001/GetStatement/2025/02 - 200 null application/json; charset=utf-8 128.0247ms
+2025-02-03 00:22:51.436 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/api/Account/AC001/GetStatement/2025/02 - null null
+2025-02-03 00:22:51.436 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API)'
+2025-02-03 00:22:51.439 +08:00 [INF] Route matched with {action = "GetStatement", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetStatement(System.String, System.String, System.String) on controller AwesomeBank.API.Controllers.AccountController (AwesomeBank.API).
+2025-02-03 00:22:51.440 +08:00 [INF] Received request to get statement for account AC001- 2025-02
+2025-02-03 00:22:51.440 +08:00 [INF] Retrieving account AC001
+2025-02-03 00:22:51.482 +08:00 [INF] Retrieving account AC001
+2025-02-03 00:22:51.489 +08:00 [INF] Executing OkObjectResult, writing value of type 'AwesomeBank.API.Application.Models.AccountStatementModel'.
+2025-02-03 00:22:51.495 +08:00 [INF] Executed action AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API) in 55.2367ms
+2025-02-03 00:22:51.497 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API)'
+2025-02-03 00:22:51.497 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/api/Account/AC001/GetStatement/2025/02 - 200 null application/json; charset=utf-8 70.4562ms
+2025-02-03 00:23:06.302 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/api/Account/AC001/GetStatement/2025/02 - null null
+2025-02-03 00:23:06.302 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API)'
+2025-02-03 00:23:06.303 +08:00 [INF] Route matched with {action = "GetStatement", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetStatement(System.String, System.String, System.String) on controller AwesomeBank.API.Controllers.AccountController (AwesomeBank.API).
+2025-02-03 00:23:06.303 +08:00 [INF] Received request to get statement for account AC001- 2025-02
+2025-02-03 00:23:06.303 +08:00 [INF] Retrieving account AC001
+2025-02-03 00:23:15.654 +08:00 [INF] Retrieving account AC001
+2025-02-03 00:24:07.373 +08:00 [INF] Retrieving account AC001
+2025-02-03 00:24:37.338 +08:00 [INF] Executing OkObjectResult, writing value of type 'AwesomeBank.API.Application.Models.AccountStatementModel'.
+2025-02-03 00:24:37.345 +08:00 [INF] Executed action AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API) in 91042.2443ms
+2025-02-03 00:24:37.345 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API)'
+2025-02-03 00:24:37.346 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/api/Account/AC001/GetStatement/2025/02 - 200 null application/json; charset=utf-8 91043.7735ms
+2025-02-03 00:24:42.187 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/api/Account/AC001/GetStatement/2025/01 - null null
+2025-02-03 00:24:42.188 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API)'
+2025-02-03 00:24:42.188 +08:00 [INF] Route matched with {action = "GetStatement", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetStatement(System.String, System.String, System.String) on controller AwesomeBank.API.Controllers.AccountController (AwesomeBank.API).
+2025-02-03 00:24:42.188 +08:00 [INF] Received request to get statement for account AC001- 2025-01
+2025-02-03 00:24:42.189 +08:00 [INF] Retrieving account AC001
+2025-02-03 00:24:50.445 +08:00 [INF] Retrieving account AC001
+2025-02-03 00:24:50.457 +08:00 [INF] Executing OkObjectResult, writing value of type 'AwesomeBank.API.Application.Models.AccountStatementModel'.
+2025-02-03 00:24:50.462 +08:00 [INF] Executed action AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API) in 8273.7477ms
+2025-02-03 00:24:50.462 +08:00 [INF] Executed endpoint 'AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API)'
+2025-02-03 00:24:50.462 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/api/Account/AC001/GetStatement/2025/01 - 200 null application/json; charset=utf-8 8275.2617ms
+2025-02-03 00:25:50.080 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/api/Account/AC001/GetStatement/2025/01 - null null
+2025-02-03 00:25:50.105 +08:00 [INF] Executing endpoint 'AwesomeBank.API.Controllers.AccountController.GetStatement (AwesomeBank.API)'
+2025-02-03 00:25:50.107 +08:00 [INF] Route matched with {action = "GetStatement", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetStatement(System.String, System.String, System.String) on controller AwesomeBank.API.Controllers.AccountController (AwesomeBank.API).
+2025-02-03 00:25:50.108 +08:00 [INF] Received request to get statement for account AC001- 2025-01
+2025-02-03 00:25:50.108 +08:00 [INF] Retrieving account AC001
+2025-02-03 00:25:50.114 +08:00 [INF] Retrieving account AC001
+2025-02-03 17:05:18.804 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/swagger/index.html - null null
+2025-02-03 17:05:19.244 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-03 17:05:19.253 +08:00 [INF] Hosting environment: Development
+2025-02-03 17:05:19.254 +08:00 [INF] Content root path: E:\ExamProjects\AwesomeBank\AwesomeBank.API
+2025-02-03 17:05:19.474 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/swagger/index.html - 200 null text/html;charset=utf-8 694.1694ms
+2025-02-03 17:05:19.571 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/_vs/browserLink - null null
+2025-02-03 17:05:19.624 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/_framework/aspnetcore-browser-refresh.js - null null
+2025-02-03 17:05:19.667 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 29.8376ms
+2025-02-03 17:05:19.743 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/_vs/browserLink - 200 null text/javascript; charset=UTF-8 173.2366ms
+2025-02-03 17:05:19.837 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/swagger/v1/swagger.json - null null
+2025-02-03 17:05:19.861 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 23.7115ms
+2025-02-03 17:09:07.288 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/swagger/index.html - null null
+2025-02-03 17:09:07.401 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-03 17:09:07.413 +08:00 [INF] Hosting environment: Development
+2025-02-03 17:09:07.413 +08:00 [INF] Content root path: E:\ExamProjects\AwesomeBank\AwesomeBank.API
+2025-02-03 17:09:07.871 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/_framework/aspnetcore-browser-refresh.js - null null
+2025-02-03 17:09:07.866 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/swagger/index.html - 200 null text/html;charset=utf-8 607.0654ms
+2025-02-03 17:09:07.883 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 10.3694ms
+2025-02-03 17:09:07.930 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/_vs/browserLink - null null
+2025-02-03 17:09:08.033 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/_vs/browserLink - 200 null text/javascript; charset=UTF-8 102.6969ms
+2025-02-03 17:09:08.185 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44315/swagger/v1/swagger.json - null null
+2025-02-03 17:09:08.208 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44315/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 24.0129ms

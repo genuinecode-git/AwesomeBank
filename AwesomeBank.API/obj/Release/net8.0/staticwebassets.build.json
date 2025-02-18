@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "Bm5GL1QwVDIJw7s6WLgtGuaPMBhadNrS32SiRBi1GWo=",
+  "Source": "AwesomeBank.API",
+  "BasePath": "_content/AwesomeBank.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

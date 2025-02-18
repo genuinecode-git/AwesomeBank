@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "AwesomeBank.Infrastructure/1.0.0": {
+        "dependencies": {
+          "AwesomeBank.Domain": "1.0.0"
+        },
+        "runtime": {
+          "AwesomeBank.Infrastructure.dll": {}
+        }
+      },
+      "AwesomeBank.Domain/1.0.0": {
+        "runtime": {
+          "AwesomeBank.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AwesomeBank.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AwesomeBank.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
