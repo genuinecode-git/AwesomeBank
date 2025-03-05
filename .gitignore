@@ -4,3 +4,18 @@
 
 /.vs/AwesomeBank/FileContentIndex/11173c17-9086-43cc-aea3-776a5d7def42.vsidx
 /.vs/AwesomeBank/v17
+/.vs/AwesomeBank/DesignTimeBuild
+/AwesomeBank.API/bin/Debug/net8.0
+/AwesomeBank.API/obj/Debug/net8.0
+/AwesomeBank.API/obj
+/AwesomeBank.Console/bin/Debug/net8.0
+/AwesomeBank.Console/obj/Debug/net8.0
+/AwesomeBank.Console/obj
+/AwesomeBank.Domain/bin/Debug/net8.0
+/AwesomeBank.Domain/obj
+/AwesomeBank.Infrastructure/bin/Debug/net8.0
+/AwesomeBank.Infrastructure/obj/Debug/net8.0
+/AwesomeBank.Infrastructure/obj
+/AwesomeBank.Test/bin/Debug/net8.0
+/AwesomeBank.Test/obj/Debug/net8.0
+/AwesomeBank.Test/obj
